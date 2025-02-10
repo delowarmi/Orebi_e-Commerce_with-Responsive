@@ -78,8 +78,10 @@ let handleSubbrand = (citems) => {
   let brandFilter = data.filter((item) => item.brand == citems)
   setCatbrandFilter(brandFilter)
 }
-  
-    
+ let [colList,setColList]=useState('')
+ let handlColeList =()=>{
+  setColList('Activelist')
+ }   
 
   return (
     <>
@@ -468,24 +470,26 @@ let handleSubbrand = (citems) => {
                 </div>
               </div>
             </div>
-
-            <div className="scrollbar-thumb-transparent scrollbar-track-trans-transparent  ">
-              <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  ">
+            
+            {/* <div className="scrollbar-thumb-transparent scrollbar-track-trans-transparent  ">
+              <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  "> */}
+                <div className="w-full">
+                <div>
                 <Flex
                   className={
                     "justify-between  flex-col lg:flex-row invisible md:visible"
                   }
                 >
-                  <div className=" w-[30%] gap-8 flex invisible lg:visible mb-5">
+                  <div className=" w-[50%] gap-8 flex invisible lg:visible mb-5">
                     <div onClick={() => setMultiList("")} className="">
-                      <MdWindow
+                      <MdWindow onClick={()=>setColList('')}
                         className={`border-2 border-[#767676]  h-[50px] w-[50px] py-3 ${
                           multiList == "activeList" ? "" : "bg-black text-white"
                         }`}
                       />
                     </div>
                     <div onClick={handleList} className="">
-                      <AiOutlineBars
+                      <AiOutlineBars onClick={handlColeList}
                         className={`border-2 border-[#767676]  h-[50px] w-[50px] py-3 ${
                           multiList == "" ? "" : "bg-black text-white"
                         }`}
@@ -505,7 +509,7 @@ let handleSubbrand = (citems) => {
                           <select
                             name=""
                             id=""
-                            className="w-[159px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
+                            className="w-[100%px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
                           >
                             <option
                               className="font-dm font-regular text-[16px]  "
@@ -522,7 +526,7 @@ let handleSubbrand = (citems) => {
                           </select>
                         </Flex>
                       </div>
-                      <div className="w-[50%] relative right-4">
+                      <div className="w-[40%] relative right-4">
                         <Flex className={" lg:gap-x-3"}>
                           <label
                             for=""
@@ -534,7 +538,7 @@ let handleSubbrand = (citems) => {
                             onChange={selectNumber}
                             name=""
                             id=""
-                            className="w-[139px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
+                            className="w-[100%] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
                           >
                             <option
                               className="font-dm font-regular text-[16px]  "
@@ -566,17 +570,20 @@ let handleSubbrand = (citems) => {
                     </Flex>
                   </div>
                 </Flex>
-
-              <Post allData={allData} cetagorysearchFilter={cetagorysearchFilter} brandsearchFilter={brandsearchFilter}/>
-              <div className="flex justify-between items-center">
+              </div>
+              <div className="scrollbar-thumb-transparent scrollbar-track-trans-transparent  ">
+              <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  ">
+              <Post allData={allData} cetagorysearchFilter={cetagorysearchFilter} brandsearchFilter={brandsearchFilter} colList={colList}/>
+              
+              </div>
+             </div>
+             <div className="flex justify-between items-center">
                 <Pagination pageNumber={pageNumber} Paginate={Paginate} next={next} prev={prev} perPage={number} currentPage={currentPage}/>
                 {pageNumber.length>0 &&
                 <h2 className="pr-4">{`Products from ${firstPage+1} to ${lastPage<data.length?lastPage:data.length} of ${data.length}`}</h2>}
                 </div>
-
-              </div>
-            </div>
-          </Flex>
+             </div> 
+             </Flex>
         </Container>
       </div>
     </>

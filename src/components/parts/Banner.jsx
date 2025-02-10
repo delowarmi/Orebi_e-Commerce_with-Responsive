@@ -3,7 +3,8 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import Image from '../Image';
 import banner from '/src/assets/Intro.png';
-// import banner from "/src/assets/banner.png"
+
+
 
 
 const Banner = () => {
@@ -149,7 +150,7 @@ const Banner = () => {
                 <Image ImgSrc={banner} className={'w-full h-auto object-cover'}/>
         </div>
         <div className='mx-auto'>
-                <Image ImgSrc={banner} className={'w-full h-auto object-cover'}/>
+                <Image ImgSrc={banner} className={'w-full h-[500px] object-cover '}/>
         </div>
         <div className='mx-auto'>
                 <Image ImgSrc={banner} className={'w-full h-auto object-cover'}/>

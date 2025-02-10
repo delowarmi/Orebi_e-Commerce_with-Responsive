@@ -3,7 +3,7 @@ import Flex from '../Flex'
 import Product from '../Product'
 
 
-const Post = ({allData,cetagorysearchFilter,brandsearchFilter}) => {
+const Post = ({allData,cetagorysearchFilter,brandsearchFilter,colList}) => {
         console.log(brandsearchFilter);
         let [seeshort, setSeeshort]=useState([])
         let [catshow ,setCatshow]=useState(true)
@@ -21,17 +21,18 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter}) => {
           setSeeshort(filterslice)
           setCatshow(true)
         }
+        // gap-x-10 flex-wrap
         
   return (
     <>
     <div>
-      <Flex className={'gap-x-10 flex-wrap'}>
-        {cetagorysearchFilter.length >0 ?
+      <Flex className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10  flex-wrap'}`}>
+        {(cetagorysearchFilter.length >0 ?
         <div>
-       <div className="flex flex-wrap gap-x-8">
+       <div className={`${colList== 'Activelist'?'gap-x-10 flex flex-col':'gap-x-10 flex flex-wrap'}`}>
           {seeshort.map((items) => (
-          <div className='pt-16'>
-              <div className='w-[270px] bg-white relative group'>
+          <div className='pt-2'>
+              <div className='w-[270px] bg-white relative group '>
                <Product 
                 id={items.id}
                 imgSrc={items.thumbnail}
@@ -74,7 +75,7 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter}) => {
            
           </div>   
           
-        ))}
+        )))}
     </Flex>
     </div>
     

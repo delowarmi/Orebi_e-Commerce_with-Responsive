@@ -12,6 +12,7 @@ import Login from "./components/pages/Login";
 import ProductDetails from "./components/pages/ProductDetails";
 import Products from "./components/pages/Products";
 import Sinup from "./components/pages/Sinup";
+// import ProDetails from "./components/proDetails";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="*" element={<Error />} />
+          {/* <Route path="/prodil" element={<ProDetails/>} /> */}
         </Route>
       </Routes>
     </>
