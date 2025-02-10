@@ -1,0 +1,15 @@
+<div>
+          <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px] ' ></div>
+        </div>
+        <div>
+          <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px] ' ></div>
+        </div>
+        <div>
+          <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px] ' ></div>
+        </div>
+        <div>
+          <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px]  ' ></div>
+        </div>
+        <div>
+          <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px] ' ></div>
+</div>
