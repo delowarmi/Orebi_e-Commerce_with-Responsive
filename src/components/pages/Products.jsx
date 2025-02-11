@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa6";
@@ -8,9 +9,8 @@ import Breadcrumb from "../Breadcrumb";
 import Container from "../Container";
 import Flex from "../Flex";
 import Heading from "../Heading";
-// import Pagination from "../parts/Pagination";
-import { apiData } from "../ContextApi";
 import Pagination from "../parts/Pagination";
+import { apiData } from "../ContextApi";
 import Post from "../parts/Post";
 
 const Products = () => {
@@ -19,69 +19,68 @@ const Products = () => {
   let [brandShow, setBrandShow] = useState(false);
   let [priseShow, setPriseShow] = useState(false);
   let [multiList, setMultiList] = useState("");
-  let [cetagory,setCategory]=useState([])
-  let [brand,setBrand]=useState([])
-  let [cetagorysearchFilter,setCategoryFilter]=useState([])
-  let [brandsearchFilter,setCatbrandFilter]=useState([])
+  let [cetagory, setCategory] = useState([]);
+  let [brand, setBrand] = useState([]);
+  let [cetagorysearchFilter, setCategoryFilter] = useState([]);
+  let [brandsearchFilter, setCatbrandFilter] = useState([]);
 
-  let [number, setNumber] = useState(18);
+  let [number, setNumber] = useState(15);
   let selectNumber = (element) => {
-  let numberConverter = Number(element.target.value);
-  setNumber(numberConverter);
+    let numberConverter = Number(element.target.value);
+    setNumber(numberConverter);
+    setPerPage(numberConverter); // perPage স্টেট আপডেট করুন
   };
-
 
   let handleList = () => {
     setMultiList("activeList");
   };
 
-let data=useContext(apiData)
-let [currentPage,setCurrentPage]=useState(1)
-let [perPage , setPerPage]= useState(number)
+  let data = useContext(apiData);
+  let [currentPage, setCurrentPage] = useState(1);
+  let [perPage, setPerPage] = useState(number);
 
-
-
-let lastPage=currentPage*perPage
-let firstPage=lastPage-perPage
-let allData=data.slice(firstPage,lastPage)
-let pageNumber=[]
-for(let i = 0; i<Math.ceil(cetagorysearchFilter.length >0 ?cetagorysearchFilter :  data.length/perPage); i++){
-  pageNumber.push(i)
-}
-let Paginate = (pageNumber) => {
-  setCurrentPage(pageNumber + 1);
-}
-
-let next = () => {
-  if (currentPage < pageNumber.length) {
-      setCurrentPage((state) => state + 1)
+  let lastPage = currentPage * perPage;
+  let firstPage = lastPage - perPage;
+  let allData = data.slice(firstPage, lastPage);
+  let pageNumber = [];
+  for (let i = 0; i < Math.ceil(cetagorysearchFilter.length > 0 ? cetagorysearchFilter.length : data.length / perPage); i++) {
+    pageNumber.push(i);
   }
-}
+  let Paginate = (pageNumber) => {
+    setCurrentPage(pageNumber + 1);
+  };
 
-let prev = () => {
-  if (currentPage > 1) {
-      setCurrentPage((state) => state - 1)
-  }
-}
-useEffect(()=>{
-    setCategory([...new Set (data.map((item)=>item.category))])
-  },[data])
-  useEffect(()=>{
-    setBrand([...new Set (data.map((item)=>item.brand))])
-  },[data])
+  let next = () => {
+    if (currentPage < pageNumber.length) {
+      setCurrentPage((state) => state + 1);
+    }
+  };
+
+  let prev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((state) => state - 1);
+    }
+  };
+
+  useEffect(() => {
+    setCategory([...new Set(data.map((item) => item.category))]);
+  }, [data]);
+  useEffect(() => {
+    setBrand([...new Set(data.map((item) => item.brand))]);
+  }, [data]);
 
   let handleSubcate = (citems) => {
-    let categoryFilter = data.filter((item) => item.category == citems)
-    setCategoryFilter(categoryFilter)
-}
-let handleSubbrand = (citems) => {
-  let brandFilter = data.filter((item) => item.brand == citems)
-  setCatbrandFilter(brandFilter)
-}
- let [colList,setColList]=useState('')
- let handlColeList =()=>{
-  setColList('Activelist')
- }   
+    let categoryFilter = data.filter((item) => item.category == citems);
+    setCategoryFilter(categoryFilter);
+  };
+  let handleSubbrand = (citems) => {
+    let brandFilter = data.filter((item) => item.brand == citems);
+    setCatbrandFilter(brandFilter);
+  };
+  let [colList, setColList] = useState("");
+  let handlColeList = () => {
+    setColList("Activelist");
+  };
 
   return (
     <>
@@ -120,26 +119,24 @@ let handleSubbrand = (citems) => {
                     {dropdownShow && (
                       <div className="">
                         <ul>
-                            {cetagory.map((item)=>
-                          <li>
-                              
-                            <Flex
-                              className={
-                                "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
-                              }
-                            > 
-                              <Link onClick={()=>handleSubcate(item)}>
-                                <Heading  
-                                  as={"p"}
-                                  text={item}
-                                  className=" capitalize hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
-                                />
-                              </Link>
-                              <FaPlus className="text-navHColor" />
-                            </Flex>
-                          </li>
-                          )}
-          
+                          {cetagory.map((item) => (
+                            <li>
+                              <Flex
+                                className={
+                                  "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
+                                }
+                              >
+                                <Link onClick={() => handleSubcate(item)}>
+                                  <Heading
+                                    as={"p"}
+                                    text={item}
+                                    className=" capitalize hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
+                                  />
+                                </Link>
+                                <FaPlus className="text-navHColor" />
+                              </Flex>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     )}
@@ -277,7 +274,7 @@ let handleSubbrand = (citems) => {
                           "justify-between border-b bottom-BorderInfoColor mt-5"
                         }
                       >
-                        <Link >
+                        <Link>
                           <Heading
                             as={"h3"}
                             text={"Shop by Brand"}
@@ -290,30 +287,28 @@ let handleSubbrand = (citems) => {
                     {brandShow && (
                       <div className="">
                         <ul>
-                        <div className="">
-                        <ul>
-                            {brand.map((item)=>
-                          <li>
-                              
-                            <Flex
-                              className={
-                                "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
-                              }
-                            > 
-                              <Link onClick={()=>handleSubcate(item)}>
-                                <Heading  
-                                  as={"p"}
-                                  text={item}
-                                  className=" capitalize hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
-                                />
-                              </Link>
-                              <FaPlus className="text-navHColor" />
-                            </Flex>
-                          </li>
-                          )}
-          
-                        </ul>
-                      </div>
+                          <div className="">
+                            <ul>
+                              {brand.map((item) => (
+                                <li>
+                                  <Flex
+                                    className={
+                                      "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
+                                    }
+                                  >
+                                    <Link onClick={() => handleSubcate(item)}>
+                                      <Heading
+                                        as={"p"}
+                                        text={item}
+                                        className=" capitalize hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
+                                      />
+                                    </Link>
+                                    <FaPlus className="text-navHColor" />
+                                  </Flex>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </ul>
                       </div>
                     )}
@@ -470,11 +465,9 @@ let handleSubbrand = (citems) => {
                 </div>
               </div>
             </div>
-            
-            {/* <div className="scrollbar-thumb-transparent scrollbar-track-trans-transparent  ">
-              <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  "> */}
-                <div className="w-full">
-                <div>
+
+            <div className="w-full">
+              <div>
                 <Flex
                   className={
                     "justify-between  flex-col lg:flex-row invisible md:visible"
@@ -482,14 +475,16 @@ let handleSubbrand = (citems) => {
                 >
                   <div className=" w-[50%] gap-8 flex invisible lg:visible mb-5">
                     <div onClick={() => setMultiList("")} className="">
-                      <MdWindow onClick={()=>setColList('')}
+                      <MdWindow
+                        onClick={() => setColList("")}
                         className={`border-2 border-[#767676]  h-[50px] w-[50px] py-3 ${
                           multiList == "activeList" ? "" : "bg-black text-white"
                         }`}
                       />
                     </div>
                     <div onClick={handleList} className="">
-                      <AiOutlineBars onClick={handlColeList}
+                      <AiOutlineBars
+                        onClick={handlColeList}
                         className={`border-2 border-[#767676]  h-[50px] w-[50px] py-3 ${
                           multiList == "" ? "" : "bg-black text-white"
                         }`}
@@ -501,7 +496,7 @@ let handleSubbrand = (citems) => {
                       <div className="w-[50%] lg:w-[60%] relative ">
                         <Flex className={" lg:gap-x-3"}>
                           <label
-                            for=""
+                            htmlFor=""
                             className="font-dm font-regular text-[16px]  "
                           >
                             Sort by:
@@ -529,7 +524,7 @@ let handleSubbrand = (citems) => {
                       <div className="w-[40%] relative right-4">
                         <Flex className={" lg:gap-x-3"}>
                           <label
-                            for=""
+                            htmlFor=""
                             className="font-dm font-regular text-[16px]  "
                           >
                             Show:
@@ -540,6 +535,12 @@ let handleSubbrand = (citems) => {
                             id=""
                             className="w-[100%] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
                           >
+                            <option
+                              className="font-dm font-regular text-[16px]  "
+                              value="15"
+                            >
+                              15
+                            </option>
                             <option
                               className="font-dm font-regular text-[16px]  "
                               value="18"
@@ -572,18 +573,34 @@ let handleSubbrand = (citems) => {
                 </Flex>
               </div>
               <div className="scrollbar-thumb-transparent scrollbar-track-trans-transparent  ">
-              <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  ">
-              <Post allData={allData} cetagorysearchFilter={cetagorysearchFilter} brandsearchFilter={brandsearchFilter} colList={colList}/>
-              
-              </div>
-             </div>
-             <div className="flex justify-between items-center">
-                <Pagination pageNumber={pageNumber} Paginate={Paginate} next={next} prev={prev} perPage={number} currentPage={currentPage}/>
-                {pageNumber.length>0 &&
-                <h2 className="pr-4">{`Products from ${firstPage+1} to ${lastPage<data.length?lastPage:data.length} of ${data.length}`}</h2>}
+                <div className="lg:h-[1500px] overflow-y-scroll w-[100%]  ">
+                  <Post
+                    allData={allData}
+                    cetagorysearchFilter={cetagorysearchFilter}
+                    brandsearchFilter={brandsearchFilter}
+                    colList={colList}
+                  />
                 </div>
-             </div> 
-             </Flex>
+              </div>
+              <div className="flex justify-between items-center">
+                <Pagination
+                  pageNumber={pageNumber}
+                  Paginate={Paginate}
+                  next={next}
+                  prev={prev}
+                  perPage={number}
+                  currentPage={currentPage}
+                />
+                {pageNumber.length > 0 && (
+                  <h2 className="pr-4">
+                    {`Products from ${firstPage + 1} to ${
+                      lastPage < data.length ? lastPage : data.length
+                    } of ${data.length}`}
+                  </h2>
+                )}
+              </div>
+            </div>
+          </Flex>
         </Container>
       </div>
     </>

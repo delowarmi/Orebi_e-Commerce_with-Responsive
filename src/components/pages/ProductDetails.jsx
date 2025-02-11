@@ -20,10 +20,10 @@ const ProductDetails = () => {
   let [quantity, setQuantity] = useState(1);
   let productId = useParams();
   let dispath= useDispatch()
-
+  let [activeColor, setActiveColor] = useState(null);
 
 let [singledata,setSingledata] = useState([])
-
+let [reviews, setReviews] = useState([]);
 
 let handleAddToCart = () => {
   dispath(increment({ ...singleData, quantity }));
@@ -45,6 +45,19 @@ let handleIncrement = () => {
       setMainImage(data.data?.images?.[0]); // প্রথম ইমেজ ডিফল্ট বড় ইমেজ হিসেবে সেট করবো
     }
     fetchData();
+  }, [productId]);
+
+
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        let response = await axios.get(`https://dummyjson.com/products/${productId.id}/reviews`);
+        setReviews(response.data.reviews); // API থেকে রিভিউ সেট করছি
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    }
+    fetchReviews();
   }, [productId]);
 
 
@@ -141,12 +154,9 @@ let handleIncrement = () => {
                               text={"COLOR:"}
                               className="font-dm font-bold text-[20px] text-navHColor "
                             />
-                            <Flex className={"gap-x-2 mt-1"}>
-                              <div className="bg-[#979797] w-5 h-5 rounded-full"></div>
-                              <div className="bg-[#FF8686] w-5 h-5 rounded-full"></div>
-                              <div className="bg-[#7ED321] w-5 h-5 rounded-full"></div>
-                              <div className="bg-[#B6B6B6] w-5 h-5 rounded-full"></div>
-                              <div className="bg-[#15CBA5] w-5 h-5 rounded-full"></div>
+                            <Flex className={"gap-x-2 mt-1 h-8"}>
+                            <div className="flex gap-x-2 mt-1">{["#979797", "#FF8686", "#7ED321", "#FF0000", "#15CBA5"].map((color) => (<div key={color} className={`w-5 h-5 rounded-full cursor-pointer transition-all duration-200 ${activeColor === color ? "w-7 h-7 border-2 border-black" : ""}`}style={{ backgroundColor: color }}onClick={() => setActiveColor(color)}></div>))}
+                           </div>
                             </Flex>
                           </Flex>
                         </div>
