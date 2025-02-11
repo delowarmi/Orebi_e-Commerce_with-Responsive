@@ -113,7 +113,7 @@ const Sinup = () => {
       )
     ) {
       setPasswordrr(
-        "1 lowercase,1 Upercase,1 special character,1 number & password must be 8 characters or longer is Requard"
+        "Credentials is invalid"
       );
     }
     if (password !== confirmPassword) {
@@ -140,7 +140,7 @@ const Sinup = () => {
             toast.success("WellCome My Project");
 
             setTimeout(() => {
-              navigate("/");
+              navigate("/my_account");
             }, 3000);
           }
 
@@ -149,9 +149,16 @@ const Sinup = () => {
         })
 
         .catch((error) => {
-          const errorCode = error.code;
-
-          setEmailrr(errorCode);
+          if (error.code.includes('auth/user not found')) {
+            
+          }else{
+            setEmailrr('Credentials is invalid');
+          }
+          if (error.code.includes('auth/user not found')) {
+            
+          }else{
+            setPasswordrr('Credentials is invalid');
+          }
           // ..
         });
     }

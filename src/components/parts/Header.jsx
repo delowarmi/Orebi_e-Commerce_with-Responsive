@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaUser } from 'react-icons/fa';
@@ -17,18 +18,21 @@ const Header = () => {
 
   // Handle input change & filter results
   const handleSearchInput = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearch(query);
-
+    const query = e.target.value;
+    setSearch(query); // 
+  
     if (!query) {
       setSearchFilter([]);
       setSelectedIndex(-1);
     } else {
-      const results = info.filter((item) => item.title.toLowerCase().includes(query));
+      const results = info.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) 
+      );
       setSearchFilter(results);
       setSelectedIndex(-1);
     }
   };
+  
 
   // Navigate to product page
   const handleProductClick = (id) => {
@@ -51,6 +55,24 @@ const Header = () => {
     }
   };
 
+  // Handle click on title
+  const handleTitleClick = (title) => {
+    setSearch(title);
+    setSearchFilter([]);
+  };
+
+  // Handle search icon click
+  const handleSearchIconClick = () => {
+    if (search) {
+      const product = info.find((item) =>
+        item.title.toLowerCase() === search.toLowerCase()
+      );
+      if (product) {
+        handleProductClick(product.id);
+      }
+    }
+  };
+
   return (
     <div className='bg-headerbgColor py-3 pl-1'>
       <Container>
@@ -69,10 +91,10 @@ const Header = () => {
               onChange={handleSearchInput}
               onKeyDown={handleKeyDown}
               type="text"
-              className='p-1 outline-none lg:p-3 bg-white rounded-md w-full border border-InfoColor'
+              className='p-1 outline-none lg:p-3 bg-white rounded-md w-full border border-navHColor font-dm'
               placeholder='Search...'
             />
-            <FaSearch className='absolute right-4 top-1/2 -translate-y-1/2' />
+            <FaSearch className='absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer' onClick={handleSearchIconClick} />
 
             {/* Search Results Dropdown */}
             {searchFilter.length > 0 && (
@@ -80,13 +102,12 @@ const Header = () => {
                 {searchFilter.map((item, index) => (
                   <div
                     key={item.id}
-                    onClick={() => handleProductClick(item.id)}
                     className={`flex items-center gap-x-3 p-2 cursor-pointer ${
                       index === selectedIndex ? 'bg-gray-200' : 'bg-white'
                     }`}
                   >
-                    <img src={item.thumbnail} alt="Product" className='w-[70px] h-[70px] rounded-md' />
-                    <p className='text-[13px] pl-4'>{item.title}</p>
+                    <img src={item.thumbnail} alt="Product" className='w-[70px] h-[70px] rounded-md' onClick={() => handleProductClick(item.id)} />
+                    <p className='text-[13px] pl-4' onClick={() => handleTitleClick(item.title)}>{item.title}</p>
                   </div>
                 ))}
               </div>

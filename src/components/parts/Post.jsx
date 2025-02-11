@@ -3,36 +3,133 @@ import Flex from '../Flex'
 import Product from '../Product'
 
 
-const Post = ({allData,cetagorysearchFilter,brandsearchFilter,colList}) => {
-        console.log(brandsearchFilter);
+const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colList}) => {
+  
         let [seeshort, setSeeshort]=useState([])
         let [catshow ,setCatshow]=useState(true)
+        let [pricehort, setPricehort]=useState([])
+        let [pricehow ,setPricehow]=useState(true)
+        let [brandhort, setBrandhort]=useState([])
+        let [brandhow ,setBrandhow]=useState(true)
+
+
         useEffect(()=>{
            let filterslice=cetagorysearchFilter.slice(0,6)
            setSeeshort(filterslice)
         },[cetagorysearchFilter])
+        useEffect(()=>{
+          let filterslice=brandsearchFilter.slice(0,6)
+          setBrandhort(filterslice)
+       },[brandsearchFilter])
+
+        useEffect(()=>{
+          let filterslice=filterprice.slice(0,6)
+          setPricehort(filterslice)
+       },[filterprice])
+
       
         let handleshow=()=>{
           setSeeshort(cetagorysearchFilter)
           setCatshow(false)
         }
+        let handlbrandeshow=()=>{
+          setBrandhort(brandsearchFilter)
+          setBrandhow(false)
+        }
+
+        let handleprishow=()=>{
+          setPricehort(filterprice)
+          setPricehow(false)
+        }
+
         let handlehide=()=>{
           let filterslice=cetagorysearchFilter.slice(0,6)
           setSeeshort(filterslice)
           setCatshow(true)
         }
-        // gap-x-10 flex-wrap
-        
+        let handlebrandhide=()=>{
+          let filterslice=brandsearchFilter.slice(0,6)
+          setBrandhort(filterslice)
+          setBrandhow(true)
+        }
+        let handleprihide=()=>{
+          let filterslice=filterprice.slice(0,6)
+          setPricehort(filterslice)
+          setPricehow(true)
+        }
+        // 'gap-x-10 flex-wrap'
   return (
     <>
-    <div>
+    <div> 
+     
       <Flex className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10  flex-wrap'}`}>
-        {(cetagorysearchFilter.length >0 ?
+      {(brandsearchFilter.length >0 ?
+      <div>
+      <div className={`${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
+         {brandhort.map((items) => (
+         <div className='pt-16'>
+             <div className='w-[270px] bg-white relative group'>
+              <Product 
+               id={items.id}
+               imgSrc={items.thumbnail}
+               badge={items.discountPercentage}
+               heart={'Add to Wish List'}
+               Compare={'Compare'}
+               Cart={'Add to Cart'}
+               title={items.title}
+               prise={items.price}
+               color={items.brand}
+              />
+            </div>
+           </div>
+           ))}
+           </div>
+           <div className='mt-6'>
+           {brandhow ?brandsearchFilter.length>6 &&
+           <button onClick={handleprishow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+           :
+           <button onClick={handleprihide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+           }
+           </div>
+           </div>
+          :
+          filterprice.length>0 ?
+          <div>
+          <div className={`${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
+             {pricehort.map((items) => (
+             <div className='pt-16'>
+                 <div className='w-[270px] bg-white relative group'>
+                  <Product 
+                   id={items.id}
+                   imgSrc={items.thumbnail}
+                   badge={items.discountPercentage}
+                   heart={'Add to Wish List'}
+                   Compare={'Compare'}
+                   Cart={'Add to Cart'}
+                   title={items.title}
+                   prise={items.price}
+                   color={items.brand}
+                  />
+                </div>
+               </div>
+               ))}
+               </div>
+               <div className='mt-6'>
+               {pricehow ?filterprice.length>6 &&
+               <button onClick={handleprishow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+               :
+               <button onClick={handleprihide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+               }
+               </div>
+               </div>
+         :
+        
+         cetagorysearchFilter.length >0 ?
         <div>
-       <div className={`${colList== 'Activelist'?'gap-x-10 flex flex-col':'gap-x-10 flex flex-wrap'}`}>
+       <div className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10 flex flex-wrap'}`}>
           {seeshort.map((items) => (
-          <div className='pt-2'>
-              <div className='w-[270px] bg-white relative group '>
+          <div className='pt-16'>
+              <div className='w-[270px] bg-white relative group'>
                <Product 
                 id={items.id}
                 imgSrc={items.thumbnail}
@@ -56,7 +153,9 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter,colList}) => {
             }
             </div>
             </div>
+            
         :
+        
         allData.map((items) => (
           <div className='pt-16'>
             <div className='w-[270px] bg-white relative group'>

@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Heading from "../Heading";
 import Breadcrumb from "../Breadcrumb";
 import Flex from "../Flex";
+import { getDatabase, ref, onValue } from "firebase/database";
+
 
 const Account = () => {
+  let [account, setAccount] = useState([]);
+  const db = getDatabase();
+
+  useEffect(() => {
+    const starCountRef = ref(db, "user/");
+    
+    onValue(starCountRef, (snapshot) => {
+      let newArray = []; 
+      snapshot.forEach((item) => {
+        newArray.push(item.val());
+      });
+      setAccount(newArray);
+    });
+
+  }, []); 
+  
+  console.log(account);
   return (
     <div>
       <Container>
         <div className="py-[130px] overflow-hidden">
           <Heading
             as={"h3"}
-            text={"Sign up"}
+            text={"My Account"}
             className="font-dm font-bold text-[40px] text-navHColor "
           />
           <Breadcrumb />
@@ -24,15 +43,18 @@ const Account = () => {
               <li className="font-dm font-bold text-[16px] text-navHColor border-b py-5 border-b-gray-300">
                 Dashboard
               </li>
-              <li className="font-dm font-regular text-[16px] text-navColor border-b py-5 border-b-gray-300">
-                Donwloads
-              </li>
-              <li className="font-dm font-regular text-[16px] text-navColor border-b py-5 border-b-gray-300">
-                Addresses
-              </li>
-              <li className="font-dm font-regular text-[16px] text-navColor border-b py-5 border-b-gray-300">
-                Account details
-              </li>
+              {account.map((items)=>(
+                <>
+              <div className="w-[300px]">
+              {/* <li key={index}>{(item)}</li> */}
+            <label htmlFor="" className="block pb-2 font-sans text-navHColor text-[16px] font-bold"><span>{items}</span></label> 
+              </div>
+                </>
+              ))}
+
+             
+              
+              
               <li className="font-dm font-regular text-[16px] text-navColor py-5 pb-[130px] ">
                 Logout
               </li>

@@ -42,7 +42,7 @@ let handleIncrement = () => {
     async function fetchData() {
       let data = await axios.get(`https://dummyjson.com/products/${productId.id}`);
       setSingleData(data.data);
-      setMainImage(data.data?.images?.[0]); // প্রথম ইমেজ ডিফল্ট বড় ইমেজ হিসেবে সেট করবো
+      setMainImage(data.data?.images?.[0]); // 
     }
     fetchData();
   }, [productId]);
@@ -52,7 +52,7 @@ let handleIncrement = () => {
     async function fetchReviews() {
       try {
         let response = await axios.get(`https://dummyjson.com/products/${productId.id}/reviews`);
-        setReviews(response.data.reviews); // API থেকে রিভিউ সেট করছি
+        setReviews(response.data.reviews); // 
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
@@ -155,7 +155,7 @@ let handleIncrement = () => {
                               className="font-dm font-bold text-[20px] text-navHColor "
                             />
                             <Flex className={"gap-x-2 mt-1 h-8"}>
-                            <div className="flex gap-x-2 mt-1">{["#979797", "#FF8686", "#7ED321", "#FF0000", "#15CBA5"].map((color) => (<div key={color} className={`w-5 h-5 rounded-full cursor-pointer transition-all duration-200 ${activeColor === color ? "w-7 h-7 border-2 border-black" : ""}`}style={{ backgroundColor: color }}onClick={() => setActiveColor(color)}></div>))}
+                            <div className=" flex gap-x-2 mt-1">{["#979797", "#FF8686", "#7ED321", "#FF0000", "#15CBA5"].map((color) => (<div key={color} className={`w-5 h-5 rounded-full cursor-pointer transition-all duration-200 ${activeColor === color ? "w-7 h-7 border-2 border-black" : ""}`}style={{ backgroundColor: color }}onClick={() => setActiveColor(color)}></div>))}
                            </div>
                             </Flex>
                           </Flex>
@@ -290,11 +290,7 @@ let handleIncrement = () => {
                           className="font-regular text-[16px] text-navHColor font-dm"
                         />
                         <Flex className={"lg:gap-x-2 pt-1"}>
-                          {/* <FaRegStar className="text-yellow-600" />
-                          <FaRegStar className="text-yellow-600" />
-                          <FaRegStar className="text-yellow-600" />
-                          <FaRegStar className="text-yellow-600" />
-                          <FaRegStar className="text-yellow-600" /> */}
+                          
                           {clientrating}
                         </Flex>
                       </Flex>

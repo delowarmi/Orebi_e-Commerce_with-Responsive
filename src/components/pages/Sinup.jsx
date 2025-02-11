@@ -6,17 +6,15 @@ import Button from "../Button";
 import axios from "axios";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Breadcrumb from "../Breadcrumb";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
+import {getAuth,createUserWithEmailAndPassword, sendEmailVerification,updateProfile} from "firebase/auth";
 import { BallTriangle } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getDatabase, ref, set } from "firebase/database";
 const Sinup = () => {
   const auth = getAuth();
+  const db = getDatabase();
   let [eye, setEye] = useState(false);
   let [eyes, setEyes] = useState(false);
   let [loader, setLoader] = useState(true);
@@ -96,7 +94,7 @@ const Sinup = () => {
 
   let [confirmPassword, setConfirmPassword] = useState("");
   let [repasswordrr, setRepasswordrr] = useState("");
-
+  let [error, setError] = useState("");
   let changeRepassword = (e) => {
     setConfirmPassword(e.target.value);
     setRepasswordrr("");
@@ -146,44 +144,54 @@ const Sinup = () => {
       password &&
       confirmPassword &&
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email) &&
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(
-        password
-      )
-    ) {
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(password) &&password === confirmPassword
+    ) 
+    try{
+      
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          setName("");
-          setNamelast("");
-          setEmail("");
-          setPhone("");
-          setAdd("");
-          setAdd2("");
-          setCity("");
-          setPassword("");
-          setConfirmPassword("");
-          setLoader(false);
+        .then((user) => {
+          console.log('user',user);
+          
 
           toast.success("Registation Successfull");
 
           console.log(user);
           // ...
+        }).then(()=>{
+          updateProfile(auth.currentUser, {
+            displayName:name,
+            photoURL: "https://example.com/jane-q-user/profile.jpg"
+          })
+        })
+        .then(()=>{
+          set(ref(db, 'user/'), {
+            email: email,
+            usernmae:name,
+            useradress:add,
+            usernumber:phone,
+          });
         })
         .then(() => {
           sendEmailVerification(auth.currentUser).then(() => {
             // Email verification sent!
             setTimeout(() => {
               navigate("/login");
-            }, 3000);
+            }, 1000);
             // ...
           });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          setEmailrr(errorCode);
+          // const errorCode = error.code;
+          // setEmailrr(errorCode);
           // ..
+          if (error.code.includes('auth/user not found')) {
+            
+          }else{
+            setEmailrr('Email Already Exists ');
+          }
         });
+    }catch(error){
+      setError('Passwords do not match. Please try again.')
     }
   };
 

@@ -61,10 +61,10 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
       </Flex>
       <div>
         <Flex className="justify-between mt-[30px]">
-          <Link to='/products'><Heading as="h5" text={title} className="font-dm font-bold text-xl text-TextHColor" /></Link>
-          <PriText as="h6" text={prise} className="font-dm text-[16px] text-TextColor" />
+          <Link to='/products'><Heading as="h5" text={title} className="font-dm font-bold text-[16px] text-navHColor" /></Link>
+          <PriText as="h6" text={prise} className="font-dm text-[16px] text-navColor" />
         </Flex>
-        <Heading as="h6" text={color} className="font-dm text-[16px] text-TextColor mt-[20px]" />
+        <Heading as="h6" text={color} className="font-dm text-[16px] text-navColor mt-[20px]" />
       </div>
     </>
   );
