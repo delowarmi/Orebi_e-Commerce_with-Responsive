@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     function size() {
       if (window.innerWidth >= 1024) {
-        setShow(true); // lg এর জন্য সবসময় দেখাবে
+        setShow(true); // lg 
       } else {
         setShow(false);
       }
