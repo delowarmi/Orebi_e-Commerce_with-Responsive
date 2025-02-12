@@ -17,9 +17,9 @@ const Bestseler = () => {
     <div className='py-[60px] overflow-hidden'>
       <Container>
          <Heading as={'h3'} text={'Our Bestsellers'} className='font-dm text-[36px] font-bold pb-[20px] text-navHColor'/>
-        <Flex className={'justify-between md:flex-wrap md:flex-row flex-col lg:flex-row'}>
+        <Flex className={' justify-between md:flex-wrap md:flex-row flex-col lg:flex-row'}>
 
-        <div className="md:w-[49%] lg:w-[24%] relative group">
+        <div className="md:w-[49%] lg:w-[24%]  relative group">
         <Product 
         imgSrc={bati}
         badge={'New'}

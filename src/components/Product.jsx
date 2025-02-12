@@ -34,10 +34,10 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
   return (
     <>
       <Flex>
-        <div className="relative overflow-hidden w-[100%] lg:w-[300px] h-[260px] group bg-slate-500">
+        <div className="relative overflow-hidden w-[100%] lg:w-[270px] h-[260px] group bg-slate-500">
           <div>
             <Link to={`/products/${id}`}>
-              <Image ImgSrc={imgSrc} className=" w-[270px]" />
+              <Image ImgSrc={imgSrc} className=" w-[300px]" />
             </Link>
             <Badge badgeName={badge} className="absolute top-4 left-5" />
           </div>
