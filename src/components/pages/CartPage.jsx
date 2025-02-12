@@ -144,7 +144,7 @@ const CartPage = () => {
           as={"p"}
           text={"Update cart"}
           className="font-sans font-bold text-[16px] text-[#262626] pl-[10px] pr-4 text-end pt-12 pb-7"
-        />
+        /> 
         <Flex className={"justify-end pb-28"}>
           <div className="w-[646px] h-[157px]">
             <Flex className={" items-center lg:flex-row flex-col"}>

@@ -31,7 +31,7 @@ const Bestseler = () => {
         color={'Black'}
         />              
         </div>
-        <div className="md:w-[49%] lg:w-[24%] relative group">
+        <div className="md:w-[49%] w-full lg:w-[24%] relative group">
         <Product 
         imgSrc={bag}
         badge={'New'}
@@ -43,7 +43,7 @@ const Bestseler = () => {
         color={'Black'}
         />              
         </div>
-        <div className="md:w-[49%] lg:w-[24%] relative group">
+        <div className="md:w-[49%] w-full lg:w-[24%] relative group">
         <Product 
         imgSrc={bati}
         badge={'New'}
@@ -55,7 +55,7 @@ const Bestseler = () => {
         color={'Black'}
         />              
         </div>
-        <div className="md:w-[49%] lg:w-[24%] relative group">
+        <div className="md:w-[49%] w-full lg:w-[24%] relative group">
         <Product 
         imgSrc={bag}
         badge={'New'}

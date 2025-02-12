@@ -12,8 +12,8 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Cart = () => {
   let data = useSelector((state) => state.counter.cartItem);
-  const [hidden, setHidden] = useState(false);
-  const navigate = useNavigate();
+  let [hidden, setHidden] = useState(false);
+  let navigate = useNavigate();
 
   // Calculate Total Price & Quantity
   const { totalprice } = data.reduce(
@@ -80,7 +80,7 @@ const Cart = () => {
                         />
                         <PriText
                           as={"h3"}
-                          text={`$${item.price}`}
+                          text={`${item.price}`}
                           className="font-dm font-bold text-[14px] text-navHColor"
                         />
                       </div>

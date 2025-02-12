@@ -98,7 +98,7 @@ const Header = () => {
 
             {/* Search Results Dropdown */}
             {searchFilter.length > 0 && (
-              <div className='w-[360px] max-h-[400px] absolute z-10 mt-4 overflow-y-scroll bg-white shadow-lg rounded-md'>
+              <div className='lg:w-[360px] w-[230px] lg:max-h-[400px] max-h-[300px] absolute z-10 mt-4 overflow-y-scroll bg-white shadow-lg rounded-md  '>
                 {searchFilter.map((item, index) => (
                   <div
                     key={item.id}
@@ -106,8 +106,8 @@ const Header = () => {
                       index === selectedIndex ? 'bg-gray-200' : 'bg-white'
                     }`}
                   >
-                    <img src={item.thumbnail} alt="Product" className='w-[70px] h-[70px] rounded-md' onClick={() => handleProductClick(item.id)} />
-                    <p className='text-[13px] pl-4' onClick={() => handleTitleClick(item.title)}>{item.title}</p>
+                    <img src={item.thumbnail} alt="Product" className='lg:w-[70px] lg:h-[70px] rounded-md w-[40px] h-[40px]' onClick={() => handleProductClick(item.id)} />
+                    <p className='text-[13px] pl-2 lg:pl-4' onClick={() => handleTitleClick(item.title)}>{item.title}</p>
                   </div>
                 ))}
               </div>

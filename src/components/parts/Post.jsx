@@ -67,8 +67,8 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colLis
       <div>
       <div className={ `${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
          {brandhort.map((items) => (
-         <div className='w-[270px] pt-16'>
-             <div className='w-[270px] bg-white relative group'>
+         <div className='w-full lg:w-[270px] pt-16'>
+             <div className='w-full lg:w-[270px] bg-white relative group'>
               <Product 
                id={items.id}
                imgSrc={items.thumbnail}
@@ -97,8 +97,8 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colLis
           <div>
           <div className={`${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
              {pricehort.map((items) => (
-             <div className='pt-16'>
-                 <div className='w-[270px] bg-white relative group'>
+             <div className='pt-16 w-full lg:w-[270px]'>
+                 <div className='w-full lg:w-[270px] bg-white relative group'>
                   <Product 
                    id={items.id}
                    imgSrc={items.thumbnail}
@@ -128,8 +128,8 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colLis
         <div>
        <div className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10 flex flex-wrap'}`}>
           {seeshort.map((items) => (
-          <div className='lg:pt-16'>
-              <div className='w-[270px] bg-white relative group'>
+          <div className='lg:pt-16 w-full lg:w-[270px]'>
+              <div className='w-full lg:w-[270px] bg-white relative group'>
                <Product 
                 id={items.id}
                 imgSrc={items.thumbnail}
@@ -157,8 +157,8 @@ const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colLis
         :
         
         allData.map((items) => (
-          <div className='pt-4 lg:pt-16'>
-            <div className='lg:ml-0 w-[270px] bg-white relative group'>
+          <div className='pt-4 lg:pt-16 w-full lg:w-[270px]'>
+            <div className='lg:ml-0 w-full lg:w-[270px] bg-white relative group'>
             <Product 
               id={items.id}
               imgSrc={items.thumbnail}

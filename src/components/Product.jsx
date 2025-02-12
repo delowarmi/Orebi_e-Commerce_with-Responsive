@@ -34,14 +34,14 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
   return (
     <>
       <Flex>
-        <div className="relative overflow-hidden w-[100%] lg:w-[270px] h-[260px] group bg-slate-500">
+        <div className="relative overflow-hidden w-full lg:w-[300px] h-[260px] group bg-gray-200">
           <div>
             <Link to={`/products/${id}`}>
-              <Image ImgSrc={imgSrc} className=" w-[300px]" />
+              <Image ImgSrc={imgSrc} className="w-[100%]" />
             </Link>
             <Badge badgeName={badge} className="absolute top-4 left-5" />
           </div>
-          <div className="bg-gray-300 p-5 absolute w-full bottom-0 translate-y-[100%] group-hover:translate-y-[0] transition-all duration-1000">
+          <div className="bg-slate-400 p-5 absolute w-full bottom-0 translate-y-[100%]     group-hover:translate-y-[0] transition-all duration-1000">
             <Flex className="justify-end gap-x-3 items-center pb-4">
               <Paragraph text={heart} />
               <FaHeart />
@@ -59,7 +59,7 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
           </div>
         </div>
       </Flex>
-      <div>
+      <div className="lg:w-[270px] w-full ">
         <Flex className="justify-between mt-[30px]">
           <Link to='/products'><Heading as="h5" text={title} className="font-dm font-bold text-[16px] text-navHColor" /></Link>
           <PriText as="h6" text={prise} className="font-dm text-[16px] text-navColor" />

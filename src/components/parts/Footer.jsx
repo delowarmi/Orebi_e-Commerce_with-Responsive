@@ -18,30 +18,30 @@ const Footer = () => {
           <Flex className={' justify-between text-center lg:text-start flex-col lg:flex-row gap-x-2 '}>
          
             <ul>
-              <li className='font-dm font-bold text-[16] text-navHColor pb-7'>MENU</li>
+              <li className='font-dm font-bold text-[20px] lg:text-[16] text-navHColor pb-7'>MENU</li>
               <Link to='/'><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Home</li></Link>
-              <Link to='/products'><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Shop</li></Link>
-              <Link to='/about'><li className='font-dm font-regular text-[14] text-fnColor pb-3'>About</li></Link>
-              <Link to='/contact'><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Contact</li></Link>
-              <Link><li className='font-dm font-regular text-[14] text-fnColor'>Journal</li></Link>
-            </ul>
+              <Link to='/products'><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Shop</li></Link>
+              <Link to='/about'><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>About</li></Link>
+              <Link to='/contact'><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Contact</li></Link>
+              <Link><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor'>Journal</li></Link>
+            </ul> 
           
           <ul>
-              <li className='font-dm font-bold text-[16] text-navHColor pb-7'>SHOP</li>
-              <Link to=''><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Accesories</li></Link>
-              <Link to=''><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Furniture</li></Link>
-              <Link to=''><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Electronics</li></Link>
-              <Link to=''><li className='font-dm font-regular text-[14] text-fnColor pb-3'>Clothes</li></Link>
-              <Link><li className='font-dm font-regular text-[14] text-fnColor'>Bags</li></Link>
+              <li className='font-dm font-bold text-[20px] lg:text-[16] text-navHColor pb-7'>SHOP</li>
+              <Link to=''><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Accesories</li></Link>
+              <Link to=''><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Furniture</li></Link>
+              <Link to=''><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Electronics</li></Link>
+              <Link to=''><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Clothes</li></Link>
+              <Link><li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor'>Bags</li></Link>
             </ul>
          
-          <ul>
-              <li className='font-dm font-bold text-[16] text-navHColor pb-7'>HELP</li>
-              <li className='font-dm font-regular text-[14] text-fnColor pb-3'>Privacy Policy</li>
-              <li className='font-dm font-regular text-[14] text-fnColor pb-3'>Terms & Conditions</li>
-              <li className='font-dm font-regular text-[14] text-fnColor pb-3'>Special E-shop</li>
-              <li className='font-dm font-regular text-[14] text-fnColor pb-3'>Shipping</li>
-              <li className='font-dm font-regular text-[14] text-fnColor'>Secure Payments</li>
+          <ul> 
+              <li className='font-dm font-bold text-[20px] lg:text-[16] text-navHColor pb-7'>HELP</li>
+              <li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Privacy Policy</li>
+              <li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Terms & Conditions</li>
+              <li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Special E-shop</li>
+              <li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor pb-3'>Shipping</li>
+              <li className='font-dm font-regular text-[18px] lg:text-[14] text-fnColor'>Secure Payments</li>
             </ul>
           
           </Flex>

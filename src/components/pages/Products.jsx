@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa6";
@@ -14,7 +13,6 @@ import { apiData } from "../ContextApi";
 import Post from "../parts/Post";
 import axios from "axios";
 
-
 const Products = () => {
   let [dropdownShow, setDropdownShow] = useState(false);
   let [colorShow, setColorShow] = useState(false);
@@ -25,33 +23,34 @@ const Products = () => {
   let [brand, setBrand] = useState([]);
   let [cetagorysearchFilter, setCategoryFilter] = useState([]);
   let [brandsearchFilter, setBrandFilter] = useState([]);
-  let [filterprice,setFilterprice]=useState([])
-  let [lowprice,setLowprice]=useState('')
-  let [highprice,setHighprice]=useState('')
+  let [filterprice, setFilterprice] = useState([]);
+  let [lowprice, setLowprice] = useState("");
+  let [highprice, setHighprice] = useState("");
 
   let [products, setProducts] = useState([]);
   let [sortOrder, setSortOrder] = useState("lowToHigh");
-  let [selectitem , setSelectitem]=useState('all')
+  let [selectitem, setSelectitem] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://dummyjson.com/products?limit=0');
+        const response = await axios.get(
+          "https://dummyjson.com/products?limit=0"
+        );
         setProducts(response.data.products); // Access the products array from response
         console.log(response);
-        
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-    
+
     fetchData();
   }, []);
   // useEffect(()=>{
   //    if (selectitem == 'lowToHigh') {
-      
+
   //    }
-     
+
   // },[selectitem])
   //  useEffect(() => {
   //    fetch("https://dummyjson.com/products?limit=0") // তোমার API লিঙ্ক এখানে দাও
@@ -65,7 +64,7 @@ const Products = () => {
   //     let products = await axios.get('https://dummyjson.com/products?limit=0')
   //     .then((res) => res.json())
   //     .then((data) => setProducts(data))
-  //     .catch((error) => console.error("Error fetching products:", error)); 
+  //     .catch((error) => console.error("Error fetching products:", error));
   //   }
   //   fetchData();
   // }, []);
@@ -73,9 +72,7 @@ const Products = () => {
   const sortedProducts = products.sort((a, b) => {
     return sortOrder === "lowToHigh" ? a.price - b.price : b.price - a.price;
   });
-  
-  
-  
+
   let [number, setNumber] = useState(15);
   let selectNumber = (element) => {
     let numberConverter = Number(element.target.value);
@@ -95,10 +92,23 @@ const Products = () => {
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
   let pageNumber = [];
-  for (let i = 0; i < Math.ceil(brandsearchFilter.length > 0 ?brandsearchFilter : filterprice.length > 0 ?filterprice : cetagorysearchFilter.length > 0 ?cetagorysearchFilter :  data.length / perPage); i++) {
+  for (
+    let i = 0;
+    i <
+    Math.ceil(
+      brandsearchFilter.length > 0
+        ? brandsearchFilter
+        : filterprice.length > 0
+        ? filterprice
+        : cetagorysearchFilter.length > 0
+        ? cetagorysearchFilter
+        : data.length / perPage
+    );
+    i++
+  ) {
     pageNumber.push(i);
   }
-  
+
   let Paginate = (pageNumber) => {
     setCurrentPage(pageNumber + 1);
   };
@@ -125,30 +135,26 @@ const Products = () => {
   let handleSubcate = (citems) => {
     let categoryFilter = data.filter((item) => item.category == citems);
     setCategoryFilter(categoryFilter);
-    
   };
   let handleSubbrand = (citem) => {
     let brandFilter = data.filter((item) => item.brand == citem);
     setBrandFilter(brandFilter);
-    
-    
   };
   let [colList, setColList] = useState("");
   let handlColeList = () => {
     setColList("Activelist");
   };
-  let handleprice=(value)=> {
-    setLowprice(value.low)
-    setHighprice(value.high)
-  
-  let priceFilter=data.filter((item)=>item.price > value.low && item.price < value.high)
-   
-  setFilterprice(priceFilter);
-  }
+  let handleprice = (value) => {
+    setLowprice(value.low);
+    setHighprice(value.high);
 
+    let priceFilter = data.filter(
+      (item) => item.price > value.low && item.price < value.high
+    );
 
+    setFilterprice(priceFilter);
+  };
 
-  
   return (
     <>
       <div className="pb-12 sm:pt-5 lg:pt-32">
@@ -383,7 +389,7 @@ const Products = () => {
 
                   <div className="ml-4">
                     <div onClick={() => setPriseShow(!priseShow)}>
-                    <Flex
+                      <Flex
                         className={
                           "justify-between border-b bottom-BorderInfoColor mt-5"
                         }
@@ -401,14 +407,14 @@ const Products = () => {
                     {priseShow && (
                       <div className="">
                         <ul>
-                          <li onClick={()=>handleprice({low:0,high:10})}>
+                          <li onClick={() => handleprice({ low: 0, high: 10 })}>
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $0-$10"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -417,14 +423,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:10,high:20})}>
+                          <li
+                            onClick={() => handleprice({ low: 10, high: 20 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $10-$20"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -433,14 +441,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:20,high:30})}>
+                          <li
+                            onClick={() => handleprice({ low: 20, high: 30 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $20-$30"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -449,14 +459,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:30,high:40})}>
+                          <li
+                            onClick={() => handleprice({ low: 30, high: 40 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $30-$40"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -465,14 +477,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:40,high:60})}>
+                          <li
+                            onClick={() => handleprice({ low: 40, high: 60 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $40-$60"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -481,14 +495,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:60,high:100})}>
+                          <li
+                            onClick={() => handleprice({ low: 60, high: 100 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $60-$100"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -497,14 +513,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:100,high:200})}>
+                          <li
+                            onClick={() => handleprice({ low: 100, high: 200 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $100-$200"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -513,14 +531,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:200,high:400})}>
+                          <li
+                            onClick={() => handleprice({ low: 200, high: 400 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $200-$400"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -529,14 +549,16 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:400,high:800})}>
+                          <li
+                            onClick={() => handleprice({ low: 400, high: 800 })}
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $400-$800"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -545,14 +567,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:800,high:2000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 800, high: 2000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $800-$2000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -561,14 +587,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:2000,high:5000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 2000, high: 5000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $2000-$5000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -577,14 +607,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:5000,high:10000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 5000, high: 10000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $5000-$10000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -593,14 +627,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:10000,high:20000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 10000, high: 20000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $10000-$20000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -609,14 +647,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:20000,high:40000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 20000, high: 40000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $20000-$40000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -625,14 +667,18 @@ const Products = () => {
                               <FaPlus className="text-navHColor" />
                             </Flex>
                           </li>
-                          <li onClick={()=>handleprice({low:40000,high:100000})}>
+                          <li
+                            onClick={() =>
+                              handleprice({ low: 40000, high: 100000 })
+                            }
+                          >
                             <Flex
                               className={
                                 "border-b bottom-BorderInfoColor justify-between py-2 lg:py-4"
                               }
                             >
                               <Link>
-                                <Heading 
+                                <Heading
                                   as={"p"}
                                   text={"Price: $40000-$100000"}
                                   className="hover:font-bold hover:px-5 duration-300 font-dm text-navHColor text-[14px] font-regular"
@@ -651,11 +697,7 @@ const Products = () => {
 
             <div className="w-full">
               <div>
-                <Flex
-                  className={
-                    "justify-between  flex-col lg:flex-row "
-                  }
-                >
+                <Flex className={"justify-between  flex-col lg:flex-row "}>
                   <div className=" lg:w-[30%] gap-8 flex invisible lg:visible mb-5">
                     <div onClick={() => setMultiList("")} className="">
                       <MdWindow
@@ -675,17 +717,21 @@ const Products = () => {
                     </div>
                   </div>
                   <div className="">
-                    <Flex className={"justify-between gap-y-4   flex-col lg:flex-row"}>
+                    <Flex
+                      className={
+                        "justify-between gap-y-4   flex-col lg:flex-row"
+                      }
+                    >
                       <div className="w-[60%] lg:w-[50%] relative ">
-                        <Flex >
+                        <Flex>
                           <label
                             htmlFor=""
                             className="font-dm font-regular text-[16px] "
                           >
                             Sort by:
                           </label>
-                          <select onChange={(e) => setSelectitem(e.target.value)
-                          }
+                          <select
+                            onChange={(e) => setSelectitem(e.target.value)}
                             name=""
                             id=""
                             className="w-[150px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
@@ -709,58 +755,57 @@ const Products = () => {
                               High To Low
                             </option>
                           </select>
-                          
-                        </Flex>
-                      </div> 
-                      <div className="w-[40%] relative right-4  pl-4">
-                      <div>
-                        <Flex className={" lg:gap-x-0 gap-x-3"}>
-                          <label
-                            htmlFor=""
-                            className="font-dm font-regular text-[16px]  "
-                          >
-                            Show:
-                          </label>
-                          <select
-                            onChange={selectNumber}
-                            name=""
-                            id=""
-                            className="w-[150px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
-                          >
-                            <option
-                              className="font-dm font-regular text-[16px]  "
-                              value="15"
-                            >
-                              15
-                            </option>
-                            <option
-                              className="font-dm font-regular text-[16px]  "
-                              value="18"
-                            >
-                              18
-                            </option>
-                            <option
-                              className="font-dm font-regular text-[16px]  "
-                              value="24"
-                            >
-                              24
-                            </option>
-                            <option
-                              className="font-dm font-regular text-[16px] "
-                              value="30"
-                            >
-                              30
-                            </option>
-                            <option
-                              className="font-dm font-regular text-[16px]"
-                              value="36"
-                            >
-                              36
-                            </option>
-                          </select>
                         </Flex>
                       </div>
-                     </div>
+                      <div className="w-[40%] relative right-4  pl-4">
+                        <div>
+                          <Flex className={" lg:gap-x-0 gap-x-3"}>
+                            <label
+                              htmlFor=""
+                              className="font-dm font-regular text-[16px]  "
+                            >
+                              Show:
+                            </label>
+                            <select
+                              onChange={selectNumber}
+                              name=""
+                              id=""
+                              className="w-[150px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
+                            >
+                              <option
+                                className="font-dm font-regular text-[16px]  "
+                                value="15"
+                              >
+                                15
+                              </option>
+                              <option
+                                className="font-dm font-regular text-[16px]  "
+                                value="18"
+                              >
+                                18
+                              </option>
+                              <option
+                                className="font-dm font-regular text-[16px]  "
+                                value="24"
+                              >
+                                24
+                              </option>
+                              <option
+                                className="font-dm font-regular text-[16px] "
+                                value="30"
+                              >
+                                30
+                              </option>
+                              <option
+                                className="font-dm font-regular text-[16px]"
+                                value="36"
+                              >
+                                36
+                              </option>
+                            </select>
+                          </Flex>
+                        </div>
+                      </div>
                     </Flex>
                   </div>
                 </Flex>
@@ -771,7 +816,8 @@ const Products = () => {
                     allData={allData}
                     cetagorysearchFilter={cetagorysearchFilter}
                     brandsearchFilter={brandsearchFilter}
-                    colList={colList} filterprice={filterprice}
+                    colList={colList}
+                    filterprice={filterprice}
                   />
                 </div>
               </div>
@@ -801,6 +847,3 @@ const Products = () => {
 };
 
 export default Products;
-
-
-
