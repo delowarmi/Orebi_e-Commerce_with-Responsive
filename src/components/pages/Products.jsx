@@ -163,7 +163,7 @@ const Products = () => {
         <Container>
           <Flex className={"justify-between gap-x-12 flex-col lg:flex-row"}>
             <div className="scrollbar-thumb-sky-700 scrollbar-track-sky-300">
-              <div className="scrollbar-thin  lg:h-[700px]  overflow-y-scroll lg:w-[360px] pt-2 lg:pl-3">
+              <div className="scrollbar-thin  lg:h-[700px]  overflow-y-scroll  lg:w-[360px] pt-2 lg:pl-3">
                 <div className="w-[100%] pr-4">
                   <div className="ml-4 ">
                     <div onClick={() => setDropdownShow(!dropdownShow)}>
@@ -773,7 +773,7 @@ const Products = () => {
                   />
                 </div>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col lg:flex-row justify-between items-center">
                 <Pagination
                   pageNumber={pageNumber}
                   Paginate={Paginate}

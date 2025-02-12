@@ -150,7 +150,7 @@ const Banner = () => {
                 <Image ImgSrc={banner} className={'w-full h-auto object-cover'}/>
         </div>
         <div className='mx-auto'>
-                <Image ImgSrc={banner} className={'w-full h-[500px] object-cover '}/>
+                <Image ImgSrc={banner} className={'w-full h-auto object-cover '}/>
         </div>
         <div className='mx-auto'>
                 <Image ImgSrc={banner} className={'w-full h-auto object-cover'}/>

@@ -88,12 +88,12 @@ let handleIncrement = () => {
     
 
   return (
-    <div className="py-[100px]">
+    <div className="lg:py-[100px]">
       <Container>
-        <Breadcrumb />
+        <Breadcrumb className='pt-5 lg:pt-12'/>
         <Flex className={"justify-between pt-6 flex-col lg:flex-row"}>
           {/* ইমেজ গ্যালারি */}
-          <div className="w-[49%] h-[850px]">
+          <div className="w-full lg:w-[49%] lg:h-[850px]">
           <div className="lg:w-full h-full">
             {/* বড় ইমেজ */}
             <div className="lg:h-[600px] flex justify-center items-center border">

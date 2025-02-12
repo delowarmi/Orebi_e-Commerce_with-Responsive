@@ -40,7 +40,7 @@ const CartPage = () => {
     },2000)
   }
   return (
-    <div className="py-24">
+    <div className="py-8 lg:py-24">
       <Container>
         <div className=" pb-12">
           <h3 className="font-sans font-bold text-[64px] text-[#262626]">

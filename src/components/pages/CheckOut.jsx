@@ -18,14 +18,14 @@ const CheckOut = () => {
     { totalprice: 0, totalquantity: 0 }
   );
   return (
-    <div className="pb-[120px]">
+    <div className="pb-10 lg:pb-[120px]">
       <Container>
-        <div className=" pb-12">
+        <div className=" pb-4 lg:pb-12">
           <h3 className="font-sans font-bold text-[64px] text-[#262626]">
             Checkout
           </h3>
           <Breadcrumb />
-          <p className="py-8 font-dm font-regular text[16px] text-navColor ">
+          <p className="py-3 lg:py-8 font-dm font-regular text[16px] text-navColor ">
             Have a coupon?{" "}
             <span className="font-dm font-regular text[16px] text-navHColor ">
               {" "}
@@ -35,15 +35,15 @@ const CheckOut = () => {
         </div>
       </Container>
       <div className="py-4 lg:py-[120px]">
-        <div className="max-w-checkOutCotainer mx-auto">
+      <div className="max-w-checkOutCotainer mx-auto ">
           <Heading
             as={"h3"}
             text={"Billing Details"}
-            className="font-dm font-bold text[39px] text-navHColor "
+            className="p-3 font-dm font-bold text[39px] text-navHColor "
           />
 
           <Flex className={"gap-x-6 border-b pb-3 flex-col lg:flex-row"}>
-            <div className="pt-[50px]">
+            <div className="lg:pt-[50px]">
               <label for="uname">
                 <b className="pl-3">First Name</b>
               </label>{" "}
@@ -56,7 +56,7 @@ const CheckOut = () => {
                 required
               ></input>
             </div>
-            <div className="pt-[50px]">
+            <div className="lg:pt-[50px]">
               <label for="uname">
                 <b className="pl-3">Last Name</b>
               </label>{" "}
@@ -174,7 +174,7 @@ const CheckOut = () => {
             <Heading
               as={"h3"}
               text={"Billing Details"}
-              className="font-dm font-bold text-[39px] text-navHColor pt-[100px]"
+              className="font-dm font-bold text-[39px] text-navHColor pt-5 lg:pt-[100px]"
             />
             <Heading
               as={"p"}
@@ -184,14 +184,14 @@ const CheckOut = () => {
             <Heading
               as={"p"}
               text={"Notes about your order, e.g. special notes for delivery."}
-              className="font-dm font-regular text-[14px] text-navColor pt-[10px] pb-[120px]"
+              className="font-dm font-regular text-[14px] text-navColor pt-[10px] lg:pb-[120px]"
             />
           </div>
           <div className="w-full h-[231px]">
             <Heading
               as={"h3"}
               text={"Your Order"}
-              className="font-dm font-bold text-[39px] text-navHColor pt-[100px]"
+              className="font-dm font-bold text-[39px] text-navHColor pt-5 lg:pt-[100px]"
             />
             <div className="lg:w-[80%]">
               <Flex className={"   "}>
