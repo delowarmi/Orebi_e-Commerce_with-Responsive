@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {/* Navbar Menu */}
           <div
-            className={`transition-all duration-500 z-50 py-2 lg:w-[60%] w-full left-0 lg:flex absolute lg:static bg-red-300 lg:bg-transparent ${
+            className={`transition-all duration-500 z-50 py-2 lg:w-[60%] w-full left-0 lg:flex absolute lg:static bg-gray-300 lg:bg-transparent ${
               show ? "opacity-100 visible top-[50px]" : "opacity-0 invisible -top-full lg:opacity-100 lg:visible lg:static"
             }`}
           >
