@@ -13,6 +13,24 @@ const firebaseConfig = {
   appId: "1:704480216207:web:7de277c5d13ccc06ea1cfa",
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 export default firebaseConfig;
+
+// import firebase from "firebase/app";
+// import "firebase/database";  // Realtime Database SDK
+
+// const firebaseConfig = {
+//   apiKey: "your-api-key",
+//   authDomain: "your-auth-domain",
+//   databaseURL: "https://your-database-name.firebaseio.com",
+//   projectId: "your-project-id",
+//   storageBucket: "your-storage-bucket",
+//   messagingSenderId: "your-sender-id",
+//   appId: "your-app-id",
+// };
+
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+
+// const database = firebase.database();

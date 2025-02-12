@@ -22,12 +22,16 @@ const Account = () => {
     });
 
   }, []); 
-  
+
+ 
   console.log(account);
+  
   return (
+
+    <>
     <div>
       <Container>
-        <div className="py-[130px] overflow-hidden">
+        <div className="pt-[100px] pb-[20px] overflow-hidden">
           <Heading
             as={"h3"}
             text={"My Account"}
@@ -38,29 +42,30 @@ const Account = () => {
       </Container>
       <Container>
         <Flex className={"justify-between gap-x-5"}>
-          <div className="w-[200px] lg:w-[234px]">
-            <ul>
-              <li className="font-dm font-bold text-[16px] text-navHColor border-b py-5 border-b-gray-300">
+          <div className="w-[200px] lg:w-[400px]">
+            <ul className="w-full">
+              <li className="font-dm font-bold text-[24px] text-navHColor border-b py-5 border-b-gray-300">
                 Dashboard
               </li>
-              {account.map((items)=>(
-                <>
-              <div className="w-[300px]">
-              {/* <li key={index}>{(item)}</li> */}
-            <label htmlFor="" className="block pb-2 font-sans text-navHColor text-[16px] font-bold"><span>{items}</span></label> 
-              </div>
-                </>
-              ))}
-
-             
-              
-              
+              {/* {account.map((item)=>(
+               <p className=" border-b-2  py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-[40px] font-bold text-navHColor text-[20px]">Name:</strong> {item.email}</p>
+                
+              ))} */}
+                <div >
+                  <Flex>
+                  <p className=" border-b-2  py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-[40px] font-bold text-navHColor text-[20px]">Name:</strong> {account[3]}</p>
+                  <p className=" border-b-2  py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-2 font-bold text-navHColor text-[20px]"></strong> {account[1]}</p>
+                  </Flex>
+                  <p className=" border-b py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-[39px] font-bold text-navHColor text-[20px]">Email:</strong> {account[0]}</p>
+                  <p className=" border-b py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-[10px] font-bold text-navHColor text-[20px]">Address:</strong> {account[2]}</p>
+                  <p className=" border-b py-3 font-dm font-regular text-[16px] text-navColor"><strong className=" pr-[30px] font-bold text-navHColor text-[20px]">Phone:</strong> {account[4]}</p>
+                </div>
               <li className="font-dm font-regular text-[16px] text-navColor py-5 pb-[130px] ">
                 Logout
               </li>
             </ul>
           </div>
-          <div className="w-[600px] lg:w-[918px]">
+          <div className="w-[600px] lg:w-[918px] mt-8">
             <Heading
               as={"p"}
               text={"Hello admin (not admin? Log out)"}
@@ -77,6 +82,7 @@ const Account = () => {
         </Flex>
       </Container>
     </div>
+    </>
   );
 };
 

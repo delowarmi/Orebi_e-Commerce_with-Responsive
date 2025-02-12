@@ -164,11 +164,15 @@ const Sinup = () => {
           })
         })
         .then(()=>{
-          set(ref(db, 'user/'), {
-            email: email,
+          set(ref(db, 'user/'),{
+          
             usernmae:name,
+            lastname:namelast,
+            email: email,
             useradress:add,
             usernumber:phone,
+            
+            
           });
         })
         .then(() => {
