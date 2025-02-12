@@ -653,10 +653,10 @@ const Products = () => {
               <div>
                 <Flex
                   className={
-                    "justify-between  flex-col lg:flex-row invisible md:visible"
+                    "justify-between  flex-col lg:flex-row "
                   }
                 >
-                  <div className=" w-[50%] gap-8 flex invisible lg:visible mb-5">
+                  <div className=" lg:w-[30%] gap-8 flex invisible lg:visible mb-5">
                     <div onClick={() => setMultiList("")} className="">
                       <MdWindow
                         onClick={() => setColList("")}
@@ -674,13 +674,13 @@ const Products = () => {
                       />
                     </div>
                   </div>
-                  <div className="lg:w-[60%]  pl-4">
-                    <Flex className={"justify-between gap-x-3 lg:gap-x-0"}>
-                      <div className="w-[50%] lg:w-[60%] relative ">
-                        <Flex className={" lg:gap-x-3"}>
+                  <div className="">
+                    <Flex className={"justify-between gap-y-4   flex-col lg:flex-row"}>
+                      <div className="w-[60%] lg:w-[50%] relative ">
+                        <Flex >
                           <label
                             htmlFor=""
-                            className="font-dm font-regular text-[16px]  "
+                            className="font-dm font-regular text-[16px] "
                           >
                             Sort by:
                           </label>
@@ -688,7 +688,7 @@ const Products = () => {
                           }
                             name=""
                             id=""
-                            className="w-[100%px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
+                            className="w-[150px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
                           >
                             <option
                               className="font-dm font-regular text-[16px]  "
@@ -711,9 +711,10 @@ const Products = () => {
                           </select>
                           
                         </Flex>
-                      </div>
-                      <div className="w-[40%] relative right-4">
-                        <Flex className={" lg:gap-x-3"}>
+                      </div> 
+                      <div className="w-[40%] relative right-4  pl-4">
+                      <div>
+                        <Flex className={" lg:gap-x-0 gap-x-3"}>
                           <label
                             htmlFor=""
                             className="font-dm font-regular text-[16px]  "
@@ -724,7 +725,7 @@ const Products = () => {
                             onChange={selectNumber}
                             name=""
                             id=""
-                            className="w-[100%] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
+                            className="w-[150px] py-1 px-5 text-base outline-none border border-navHColor bg-transparent"
                           >
                             <option
                               className="font-dm font-regular text-[16px]  "
@@ -759,6 +760,7 @@ const Products = () => {
                           </select>
                         </Flex>
                       </div>
+                     </div>
                     </Flex>
                   </div>
                 </Flex>
