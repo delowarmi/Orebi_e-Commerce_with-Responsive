@@ -26,6 +26,7 @@ const Navbar = () => {
     setShow((prev) => !prev);
   };
 
+
   return (
     <div className="w-full py-3 bg-slate-200 top-0 sticky z-50">
       <Container>
