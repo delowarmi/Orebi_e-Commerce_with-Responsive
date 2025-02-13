@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 
 const CheckOut = () => {
-  
+ //---------------calculation------------------------------ 
   let data = useSelector((state) => state.counter.cartItem);
   const { totalprice, totalquantity } = data.reduce(
     (acc, item) => {
@@ -17,6 +17,7 @@ const CheckOut = () => {
     },
     { totalprice: 0, totalquantity: 0 }
   );
+  //------------end-----------------------------------
   return (
     <div className="pb-10 lg:pb-[120px]">
       <Container>

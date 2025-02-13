@@ -6,7 +6,6 @@ import Heading from "../Heading";
 import Flex from "../Flex";
 import Breadcrumb from "../Breadcrumb";
 import ProductAbout from "../ProductAbout";
-
 const About = () => {
   return (
     <div className="lg:py-[150px] py-12 overflow-hidden">
@@ -17,7 +16,6 @@ const About = () => {
           className="font-dm font-bold text-[40px] text-navHColor"
         />
         <Breadcrumb />
-
         <Flex className={"justify-between lg:pt-[70px] pt-5"}>
           <div className="w-[49%] relative">
             <ProductAbout imgSrc={pro1} badge={"Our Brands"} />

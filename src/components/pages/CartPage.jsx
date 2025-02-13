@@ -15,30 +15,36 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  // data gate to redux ----------
+  let data =useSelector((state)=>state.counter.cartItem)
+  let dispach=useDispatch();
+  let navigate=useNavigate() //--loading time set 
+  //-------------------------------------
+  //-----remove , incriment & decriment -------
   let handleRemove = (index) => {
     dispach(removeProduct(index));
   };
-  let data =useSelector((state)=>state.counter.cartItem)
-  let dispach=useDispatch();
-  let navigate=useNavigate()
   let handleinrement=(index)=>{
     dispach(quantityInrement(index))
   }
   let handleDicrement=(index)=>{
     dispach(quantityDecriment(index))
   }
- 
+  //-----------end----------------------------
+  //--------calculation ----------------------
   const {totalprice,totalquantity}=data.reduce((acc,item)=>{
     acc.totalprice+=item.price*item.quantity
     return acc
   },{totalprice:0,totalquantity:0})
- 
+ //---------------end----------------------------
+ //-------- toastify --show ---------------
   let handlechackout=()=>{
     toast('Your order has been placed!')
     setTimeout(()=>{
       navigate('/checkout')
     },2000)
   }
+  //----------end--------------------------------
   return (
     <div className="py-8 lg:py-24">
       <Container>
@@ -109,7 +115,6 @@ const CartPage = () => {
                  </Flex>
                </div>
              </div>
- 
              <div className="lg:w-[10%]">
                <PriText
                  as={"p"}
@@ -119,8 +124,6 @@ const CartPage = () => {
              </div>
            </Flex>
            ))} 
-         
-        
         <div className=" border pl-3 py-5">
           <Flex className={"justify-between"}>
             <Flex className={" items-center "}>
@@ -194,5 +197,4 @@ const CartPage = () => {
     </div>
   );
 };
-
 export default CartPage;

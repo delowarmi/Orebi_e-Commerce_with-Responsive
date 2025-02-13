@@ -8,21 +8,15 @@ import Slider from 'react-slick';
 import Product from '../Product';
 import { Link } from 'react-router-dom';
 import { apiData } from '../ContextApi';
-
-
-
 const Arrival = () => {
   let data = useContext(apiData)
-  
-  
-        var settings = {
+        let settings = {
                 infinite: true,
                 speed: 500,
                 slidesToShow: 4,
                 slidesToScroll: 1,
                 prevArrow:<PriveArrow/>,
                 nextArrow:<NextArrow/>,
-
                 responsive: [
                         {
                           breakpoint: 1034,
@@ -53,18 +47,13 @@ const Arrival = () => {
                         }
                       ]
               };
-
   return (
         <div className='py-[60px] overflow-hidden'>
-        
         <Container >
         <Heading as={'h3'} text={'New Arrivals'} className='font-dm font-bold text-[40px] pb-[30px] text-navHColor'/>
-
         <Slider  {...settings} >
-
         {data.map((items) => (
-          <div className='w-full relative group px-2'>
-         
+        <div className='w-full relative group px-2'>  
         <Product 
         id={items.id}
         imgSrc={items.thumbnail}
@@ -76,15 +65,11 @@ const Arrival = () => {
         prise={items.price}
         color={items.brand}
         />  
-       
         </div>
-         
         ))}
       </Slider>
       </Container>
       </div>
   )
 }
-
-
 export default Arrival

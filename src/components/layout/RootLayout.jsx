@@ -3,7 +3,6 @@ import Navbar from "../parts/Navbar";
 import Header from "../parts/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "../parts/Footer";
-
 const RootLayout = () => {
   return (
     <>
@@ -14,5 +13,4 @@ const RootLayout = () => {
     </>
   );
 };
-
 export default RootLayout;

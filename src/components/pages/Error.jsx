@@ -9,7 +9,6 @@ import Breadcrumb from "../Breadcrumb";
 const Error = () => {
   return (
     <>
-    
     <div className="bg-palak py-[600px] bg-no-repeat bg-center bg-cover"></div>
     </> 
   );

@@ -125,7 +125,7 @@ let order = event.target.value;
   //=========================== change hobe eta
  
 
-// condition pagination ====================
+// condition pagination =========যখন low to high & high to low condtion দি তখন আমার আগের paginate hoy na =======
 
 // let data = useContext(apiData);
 // let [currentPages, setCurrentPages] = useState(1);
@@ -168,12 +168,6 @@ let order = event.target.value;
 //===========================
 
   //==========================================
-
-
-
-
-
-
 
 
 //=====filter by category ,brand ,price

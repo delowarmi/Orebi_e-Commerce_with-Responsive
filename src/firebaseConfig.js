@@ -17,20 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export default firebaseConfig;
 
-// import firebase from "firebase/app";
-// import "firebase/database";  // Realtime Database SDK
+// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs
+// firebase.js
+// firebaseConfig.js
 
-// const firebaseConfig = {
-//   apiKey: "your-api-key",
-//   authDomain: "your-auth-domain",
-//   databaseURL: "https://your-database-name.firebaseio.com",
-//   projectId: "your-project-id",
-//   storageBucket: "your-storage-bucket",
-//   messagingSenderId: "your-sender-id",
-//   appId: "your-app-id",
-// };
 
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
 
-// const database = firebase.database();
+
