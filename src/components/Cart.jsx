@@ -21,7 +21,7 @@ const Cart = () => {
       acc.totalprice += item.price * item.quantity;
       return acc;
     },
-    { totalprice: 0 }
+    { totalprice: 0 },
   );
 
   // View Cart Button Click
@@ -39,7 +39,7 @@ const Cart = () => {
     setHidden(false);
     setTimeout(() => {
       navigate("/checkout");
-    },500);
+    }, 500);
   };
 
   return (
@@ -61,7 +61,7 @@ const Cart = () => {
               </div>
             )}
           </div>
-          
+
           {hidden && (
             <div className="lg:w-[360px] w-[200px] absolute lg:-left-[340px] -left-[200px] lg:top-[50px] top-[38px] z-50 h-[370px] overflow-y-scroll bg-transparent">
               {/* Cart Items */}
@@ -97,7 +97,6 @@ const Cart = () => {
                 </div>
               ))}
 
-             
               {data.length > 0 && (
                 <Flex className={"justify-between bg-slate-300 px-4 pb-4"}>
                   <Button btnText={"View Cart"} onClick={handleToViewcart} />
@@ -108,7 +107,7 @@ const Cart = () => {
           )}
         </Flex>
       </OutsideClickHandler>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

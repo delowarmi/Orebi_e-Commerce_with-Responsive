@@ -1,4 +1,3 @@
-
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -13,23 +12,31 @@ import { useContext } from "react";
 import { apiData } from "./ContextApi";
 import { addToCart } from "./slice/AddtoCartSlice";
 
-
-const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id }) => {
+const Product = ({
+  badge,
+  imgSrc,
+  heart,
+  Compare,
+  Cart,
+  title,
+  prise,
+  color,
+  id,
+}) => {
   const dispatch = useDispatch();
-  
+
   const handleAddToCart = () => {
     const product = {
-      id: id, // 
-      title: title, // 
-      thumbnail:imgSrc, // 
-      price: prise, // 
-      color: color, // 
-      quantity: 1, // 
+      id: id, //
+      title: title, //
+      thumbnail: imgSrc, //
+      price: prise, //
+      color: color, //
+      quantity: 1, //
     };
     console.log("Adding to Cart:", product);
     dispatch(addToCart(product));
   };
-
 
   return (
     <>
@@ -51,7 +58,10 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
               <FaCodeCompare />
             </Flex>
             <Flex className="justify-end gap-x-3 items-center">
-              <div onClick={handleAddToCart} className="cursor-pointer font-bold">
+              <div
+                onClick={handleAddToCart}
+                className="cursor-pointer font-bold"
+              >
                 <Paragraph text={Cart} />
               </div>
               <FaShoppingCart />
@@ -61,10 +71,24 @@ const Product = ({ badge, imgSrc, heart, Compare, Cart, title, prise, color, id 
       </Flex>
       <div className="lg:w-[270px] w-full ">
         <Flex className="justify-between mt-[30px]">
-          <Link to='/products'><Heading as="h5" text={title} className="font-dm font-bold text-[16px] text-navHColor" /></Link>
-          <PriText as="h6" text={prise} className="font-dm text-[16px] text-navColor" />
+          <Link to="/products">
+            <Heading
+              as="h5"
+              text={title}
+              className="font-dm font-bold text-[16px] text-navHColor"
+            />
+          </Link>
+          <PriText
+            as="h6"
+            text={prise}
+            className="font-dm text-[16px] text-navColor"
+          />
         </Flex>
-        <Heading as="h6" text={color} className="font-dm text-[16px] text-navColor mt-[20px]" />
+        <Heading
+          as="h6"
+          text={color}
+          className="font-dm text-[16px] text-navColor mt-[20px]"
+        />
       </div>
     </>
   );

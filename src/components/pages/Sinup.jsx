@@ -6,7 +6,12 @@ import Button from "../Button";
 import axios from "axios";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Breadcrumb from "../Breadcrumb";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { BallTriangle } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -23,7 +28,7 @@ const Signup = () => {
   const [eyes, setEyes] = useState(false);
   const [loader, setLoader] = useState(true);
   const [countries, setCountries] = useState([]);
-  
+
   // Form states
   const [formData, setFormData] = useState({
     firstName: "",
@@ -37,7 +42,7 @@ const Signup = () => {
     region: "",
     postCode: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   // Error states
@@ -50,7 +55,7 @@ const Signup = () => {
     address2: "",
     city: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   // Fetch countries data
@@ -69,14 +74,14 @@ const Signup = () => {
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     // Clear error when user starts typing
-    setErrors(prev => ({
+    setErrors((prev) => ({
       ...prev,
-      [name]: ""
+      [name]: "",
     }));
   };
 
@@ -101,7 +106,9 @@ const Signup = () => {
     if (!formData.email) {
       newErrors.email = "Email is required";
       isValid = false;
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(formData.email)) {
+    } else if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(formData.email)
+    ) {
       newErrors.email = "Invalid email address";
       isValid = false;
     }
@@ -128,8 +135,13 @@ const Signup = () => {
     if (!formData.password) {
       newErrors.password = "Password is required";
       isValid = false;
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/.test(formData.password)) {
-      newErrors.password = "Password must contain 1 lowercase, 1 uppercase, 1 number, 1 special character, and be at least 8 characters";
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/.test(
+        formData.password,
+      )
+    ) {
+      newErrors.password =
+        "Password must contain 1 lowercase, 1 uppercase, 1 number, 1 special character, and be at least 8 characters";
       isValid = false;
     }
 
@@ -156,7 +168,7 @@ const Signup = () => {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
-        formData.password
+        formData.password,
       );
 
       await updateProfile(userCredential.user, {
@@ -177,9 +189,9 @@ const Signup = () => {
           city: formData.city,
           country: formData.country,
           region: formData.region,
-          postCode: formData.postCode
+          postCode: formData.postCode,
         },
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
       });
 
       toast.success("Registration successful! Please verify your email.");
@@ -188,7 +200,7 @@ const Signup = () => {
       console.error("Registration error:", error);
       setLoader(true);
       if (error.code === "auth/email-already-in-use") {
-        setErrors(prev => ({ ...prev, email: "Email already exists" }));
+        setErrors((prev) => ({ ...prev, email: "Email already exists" }));
       } else {
         toast.error("Registration failed. Please try again.");
       }
@@ -222,7 +234,7 @@ const Signup = () => {
             text="Your Personal Details"
             className="font-dm font-bold text-[32px] lg:text-[40px] border-b pb-3 bottom-BorderInfoColor"
           />
-          
+
           <Flex className="gap-x-6 border-b pb-3 flex-col lg:flex-row">
             {/* First Name */}
             <div className="pt-[50px] relative">
@@ -304,7 +316,7 @@ const Signup = () => {
             text="New Customer"
             className="font-dm font-bold text-[40px] pt-[40px] border-b pb-3 bottom-BorderInfoColor"
           />
-          
+
           <Flex className="gap-x-6 border-b pb-3 flex-col lg:flex-row">
             {/* Address 1 */}
             <div className="pt-[50px] relative">
@@ -385,7 +397,6 @@ const Signup = () => {
             </div>
           </Flex>
 
-
           <Flex className="gap-x-6 border-b pb-3 flex-col lg:flex-row">
             {/* City */}
             <div className="pt-[50px] relative">
@@ -430,7 +441,7 @@ const Signup = () => {
             text="Your Password"
             className="font-dm font-bold text-[40px] pt-[40px] border-b pb-3 bottom-BorderInfoColor"
           />
-          
+
           <Flex className="gap-x-6 border-b pb-3 flex-col lg:flex-row">
             {/* Password */}
             <div className="pt-[50px] relative">

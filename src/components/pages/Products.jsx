@@ -16,11 +16,11 @@ import axios from "axios";
 const Products = () => {
   //----------Dropdwon ------------------
   let [dropdownShow, setDropdownShow] = useState(false); //--dropdwon category
-  let [colorShow, setColorShow] = useState(false);// drop dwon coler show
-  let [brandShow, setBrandShow] = useState(false);// drop dwon brand show
-  let [priseShow, setPriseShow] = useState(false);// drop dwon price show
-//-----------------end-------------------------------------------
-// Multilist and collist
+  let [colorShow, setColorShow] = useState(false); // drop dwon coler show
+  let [brandShow, setBrandShow] = useState(false); // drop dwon brand show
+  let [priseShow, setPriseShow] = useState(false); // drop dwon price show
+  //-----------------end-------------------------------------------
+  // Multilist and collist
   let [multiList, setMultiList] = useState("");
   let handleList = () => {
     setMultiList("activeList");
@@ -41,50 +41,50 @@ const Products = () => {
   let [lowprice, setLowprice] = useState("");
   let [highprice, setHighprice] = useState("");
   //--------------------------end---------------------------------
-  
-//short high to low========================================
-let [products, setProducts] = useState([]); 
-let [sortOrder, setSortOrder] = useState(""); 
 
-useEffect(() => {
-  axios.get("https://dummyjson.com/products?limit=194")
-    .then((response) => {
-      console.log("Fetched Products:", response.data.products); 
-      if (Array.isArray(response.data.products)) {
-        setProducts(response.data.products);
-      } else {
-        setProducts([]); 
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      setProducts([]); 
-    });
-}, []);
+  //short high to low========================================
+  let [products, setProducts] = useState([]);
+  let [sortOrder, setSortOrder] = useState("");
 
-let handleSortChange = (event) => {
-let order = event.target.value;
-  setSortOrder(order);
-  let sortedProducts = [...products];
-  if (order === "low-to-high") {
-    sortedProducts.sort((a, b) => a.price - b.price);
-  } else if (order === "high-to-low") {
-    sortedProducts.sort((a, b) => b.price - a.price);
-  }
-  setProducts(sortedProducts);
-};
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/products?limit=194")
+      .then((response) => {
+        console.log("Fetched Products:", response.data.products);
+        if (Array.isArray(response.data.products)) {
+          setProducts(response.data.products);
+        } else {
+          setProducts([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setProducts([]);
+      });
+  }, []);
 
+  let handleSortChange = (event) => {
+    let order = event.target.value;
+    setSortOrder(order);
+    let sortedProducts = [...products];
+    if (order === "low-to-high") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (order === "high-to-low") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+    setProducts(sortedProducts);
+  };
 
-//log to high==========================================
-// short by page product================================
+  //log to high==========================================
+  // short by page product================================
   let [number, setNumber] = useState(15);
   let selectNumber = (element) => {
     let numberConverter = Number(element.target.value);
     setNumber(numberConverter);
-    setPerPage(numberConverter); // perPage 
+    setPerPage(numberConverter); // perPage
   };
   //=======================
-//pagination...area......
+  //pagination...area......
   let data = useContext(apiData);
   let [currentPage, setCurrentPage] = useState(1);
   let [perPage, setPerPage] = useState(number);
@@ -93,15 +93,17 @@ let order = event.target.value;
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
   let pageNumber = [];
-  for (let i = 0;i <Math.ceil(
-        
-        brandsearchFilter.length > 0
+  for (
+    let i = 0;
+    i <
+    Math.ceil(
+      brandsearchFilter.length > 0
         ? brandsearchFilter
         : filterprice.length > 0
-        ? filterprice
-        : cetagorysearchFilter.length > 0
-        ? cetagorysearchFilter
-        : data.length / perPage
+          ? filterprice
+          : cetagorysearchFilter.length > 0
+            ? cetagorysearchFilter
+            : data.length / perPage,
     );
     i++
   ) {
@@ -110,67 +112,65 @@ let order = event.target.value;
   let Paginate = (pageNumber) => {
     setCurrentPage(pageNumber + 1);
   };
-  
+
   let next = () => {
     if (currentPage < pageNumber.length) {
       setCurrentPage((state) => state + 1);
     }
   };
-  
+
   let prev = () => {
     if (currentPage > 1) {
       setCurrentPage((state) => state - 1);
     }
   };
   //=========================== change hobe eta
- 
 
-// condition pagination =========যখন low to high & high to low condtion দি তখন আমার আগের paginate hoy na =======
+  // condition pagination =========যখন low to high & high to low condtion দি তখন আমার আগের paginate hoy na =======
 
-// let data = useContext(apiData);
-// let [currentPages, setCurrentPages] = useState(1);
-// let [perPages, setPerPages] = useState(number);
+  // let data = useContext(apiData);
+  // let [currentPages, setCurrentPages] = useState(1);
+  // let [perPages, setPerPages] = useState(number);
 
-// let lastPages = currentPage * perPage;
-// let firstPages = lastPage - perPage;
-// let allDatas = data.slice(firstPage, lastPage);
-// let pageNumbers = [];
-// for (let i = 0;i <Math.ceil(
-      
-//       brandsearchFilter.length > 0
-//       ? brandsearchFilter
-//       : filterprice.length > 0
-//       ? filterprice
-//       : cetagorysearchFilter.length > 0
-//       ? cetagorysearchFilter
-//       : data.length / perPage
-//   );
-//   i++
-// ) {
-//   pageNumber.push(i);
-// }
+  // let lastPages = currentPage * perPage;
+  // let firstPages = lastPage - perPage;
+  // let allDatas = data.slice(firstPage, lastPage);
+  // let pageNumbers = [];
+  // for (let i = 0;i <Math.ceil(
 
-// let Paginates = (pageNumber) => {
-//   setCurrentPage(pageNumber + 1);
-// };
+  //       brandsearchFilter.length > 0
+  //       ? brandsearchFilter
+  //       : filterprice.length > 0
+  //       ? filterprice
+  //       : cetagorysearchFilter.length > 0
+  //       ? cetagorysearchFilter
+  //       : data.length / perPage
+  //   );
+  //   i++
+  // ) {
+  //   pageNumber.push(i);
+  // }
 
-// let nextarr = () => {
-//   if (currentPage < pageNumber.length) {
-//     setCurrentPage((state) => state + 1);
-//   }
-// };
+  // let Paginates = (pageNumber) => {
+  //   setCurrentPage(pageNumber + 1);
+  // };
 
-// let prevarr = () => {
-//   if (currentPage > 1) {
-//     setCurrentPage((state) => state - 1);
-//   }
-// };
-//===========================
+  // let nextarr = () => {
+  //   if (currentPage < pageNumber.length) {
+  //     setCurrentPage((state) => state + 1);
+  //   }
+  // };
+
+  // let prevarr = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage((state) => state - 1);
+  //   }
+  // };
+  //===========================
 
   //==========================================
 
-
-//=====filter by category ,brand ,price
+  //=====filter by category ,brand ,price
   useEffect(() => {
     setCategory([...new Set(data.map((item) => item.category))]);
   }, [data]);
@@ -192,11 +192,11 @@ let order = event.target.value;
     setHighprice(value.high);
 
     let priceFilter = data.filter(
-      (item) => item.price > value.low && item.price < value.high
+      (item) => item.price > value.low && item.price < value.high,
     );
     setFilterprice(priceFilter);
   };
-//===========================
+  //===========================
   return (
     <>
       <div className="pb-12 sm:pt-5 lg:pt-32">
@@ -797,7 +797,7 @@ let order = event.target.value;
                               High To Low
                             </option>
                           </select> */}
-      {/* <div className="p-5">
+                          {/* <div className="p-5">
      
       <select className="border p-2 mb-4" onChange={handleSortChange}>
         <option value="">Sort by Price</option>
@@ -816,16 +816,18 @@ let order = event.target.value;
            ))}
       </div>
     </div> */}
-    {/* <div className="p-5"> */}
-     
-      <select className="border p-2 mb-4" onChange={handleSortChange}>
-        <option value="">Sort by Price</option>
-        <option value="low-to-high"> Low to High</option>
-        <option value="high-to-low"> High to Low</option>
-      </select>
+                          {/* <div className="p-5"> */}
 
-      
-      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                          <select
+                            className="border p-2 mb-4"
+                            onChange={handleSortChange}
+                          >
+                            <option value="">Sort by Price</option>
+                            <option value="low-to-high"> Low to High</option>
+                            <option value="high-to-low"> High to Low</option>
+                          </select>
+
+                          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {Array.isArray(products) && products.length > 0 ? (
           products.map((product) => (
             <div key={product.id} className="border p-3 shadow-md rounded-md">
@@ -839,7 +841,6 @@ let order = event.target.value;
         )}
       </div>
     </div> */}
-  
                         </Flex>
                       </div>
                       <div className="w-[40%] relative right-4  pl-4">
@@ -902,7 +903,8 @@ let order = event.target.value;
                     cetagorysearchFilter={cetagorysearchFilter}
                     brandsearchFilter={brandsearchFilter}
                     colList={colList}
-                    filterprice={filterprice} products={products}
+                    filterprice={filterprice}
+                    products={products}
                   />
                 </div>
               </div>

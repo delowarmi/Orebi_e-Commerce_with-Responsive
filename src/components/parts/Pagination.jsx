@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const Pagination = ({pageNumber,Paginate,next,prev,currentPage}) => {
+const Pagination = ({ pageNumber, Paginate, next, prev, currentPage }) => {
   return (
     <div className="mt-6">
       <>
@@ -18,7 +18,8 @@ const Pagination = ({pageNumber,Paginate,next,prev,currentPage}) => {
             )}
 
             {pageNumber.map((item, i) => (
-              <li onClick={() => Paginate(item)}
+              <li
+                onClick={() => Paginate(item)}
                 className={
                   currentPage == i + 1
                     ? "cursor-pointer flex items-center justify-center px-1 lg:px-3 h-10 leading-tight text-gray-500 bg-[#262626]"
@@ -44,6 +45,6 @@ const Pagination = ({pageNumber,Paginate,next,prev,currentPage}) => {
       </>
     </div>
   );
-}
+};
 
-export default Pagination
+export default Pagination;
