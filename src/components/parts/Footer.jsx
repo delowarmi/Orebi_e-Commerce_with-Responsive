@@ -62,7 +62,7 @@ const Footer = () => {
           <div className="lg:w-[70%]">
           <Flex className={' justify-between px-8 lg:px-0 lg:justify-start pb-3'}>
           <Flex className={'gap-x-5'}>
-          <FaFacebookF className='text-[20px]'/>
+          <Link to='https://www.facebook.com/md.delowarhossenmi'><FaFacebookF className='text-[20px]'/></Link>
           <FaLinkedinIn className='text-[20px]'/>
           <FiInstagram className='text-[20px]'/>
           </Flex>

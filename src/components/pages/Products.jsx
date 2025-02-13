@@ -14,76 +14,77 @@ import Post from "../parts/Post";
 import axios from "axios";
 
 const Products = () => {
-  let [dropdownShow, setDropdownShow] = useState(false);
-  let [colorShow, setColorShow] = useState(false);
-  let [brandShow, setBrandShow] = useState(false);
-  let [priseShow, setPriseShow] = useState(false);
+  //----------Dropdwon ------------------
+  let [dropdownShow, setDropdownShow] = useState(false); //--dropdwon category
+  let [colorShow, setColorShow] = useState(false);// drop dwon coler show
+  let [brandShow, setBrandShow] = useState(false);// drop dwon brand show
+  let [priseShow, setPriseShow] = useState(false);// drop dwon price show
+//-----------------end-------------------------------------------
+// Multilist and collist
   let [multiList, setMultiList] = useState("");
+  let handleList = () => {
+    setMultiList("activeList");
+  };
+  let [colList, setColList] = useState("");
+  let handlColeList = () => {
+    setColList("Activelist");
+  };
+  //--------------end--------------------------------------------
+  // filter by category -----------------------------------------
   let [cetagory, setCategory] = useState([]);
-  let [brand, setBrand] = useState([]);
   let [cetagorysearchFilter, setCategoryFilter] = useState([]);
+
+  let [brand, setBrand] = useState([]);
   let [brandsearchFilter, setBrandFilter] = useState([]);
+
   let [filterprice, setFilterprice] = useState([]);
   let [lowprice, setLowprice] = useState("");
   let [highprice, setHighprice] = useState("");
+  //--------------------------end---------------------------------
+  
+//short high to low========================================
+let [products, setProducts] = useState([]); 
+let [sortOrder, setSortOrder] = useState(""); 
 
-  let [products, setProducts] = useState([]);
-  let [sortOrder, setSortOrder] = useState("lowToHigh");
-  let [selectitem, setSelectitem] = useState("all");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://dummyjson.com/products?limit=0"
-        );
-        setProducts(response.data.products); // Access the products array from response
-        console.log(response);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+useEffect(() => {
+  axios.get("https://dummyjson.com/products?limit=194")
+    .then((response) => {
+      console.log("Fetched Products:", response.data.products); 
+      if (Array.isArray(response.data.products)) {
+        setProducts(response.data.products);
+      } else {
+        setProducts([]); 
       }
-    };
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      setProducts([]); 
+    });
+}, []);
 
-    fetchData();
-  }, []);
-  // useEffect(()=>{
-  //    if (selectitem == 'lowToHigh') {
+let handleSortChange = (event) => {
+let order = event.target.value;
+  setSortOrder(order);
+  let sortedProducts = [...products];
+  if (order === "low-to-high") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (order === "high-to-low") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
+  setProducts(sortedProducts);
+};
 
-  //    }
 
-  // },[selectitem])
-  //  useEffect(() => {
-  //    fetch("https://dummyjson.com/products?limit=0") // তোমার API লিঙ্ক এখানে দাও
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data))
-  //     .catch((error) => console.error("Error fetching products:", error));
-  // }, []);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     let products = await axios.get('https://dummyjson.com/products?limit=0')
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data))
-  //     .catch((error) => console.error("Error fetching products:", error));
-  //   }
-  //   fetchData();
-  // }, []);
-
-  const sortedProducts = products.sort((a, b) => {
-    return sortOrder === "lowToHigh" ? a.price - b.price : b.price - a.price;
-  });
-
+//log to high==========================================
+// short by page product================================
   let [number, setNumber] = useState(15);
   let selectNumber = (element) => {
     let numberConverter = Number(element.target.value);
     setNumber(numberConverter);
-    setPerPage(numberConverter); // perPage স্টেট আপডেট করুন
+    setPerPage(numberConverter); // perPage 
   };
-
-  let handleList = () => {
-    setMultiList("activeList");
-  };
-
+  //=======================
+//pagination...area......
   let data = useContext(apiData);
   let [currentPage, setCurrentPage] = useState(1);
   let [perPage, setPerPage] = useState(number);
@@ -92,11 +93,9 @@ const Products = () => {
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
   let pageNumber = [];
-  for (
-    let i = 0;
-    i <
-    Math.ceil(
-      brandsearchFilter.length > 0
+  for (let i = 0;i <Math.ceil(
+        
+        brandsearchFilter.length > 0
         ? brandsearchFilter
         : filterprice.length > 0
         ? filterprice
@@ -108,23 +107,76 @@ const Products = () => {
   ) {
     pageNumber.push(i);
   }
-
   let Paginate = (pageNumber) => {
     setCurrentPage(pageNumber + 1);
   };
-
+  
   let next = () => {
     if (currentPage < pageNumber.length) {
       setCurrentPage((state) => state + 1);
     }
   };
-
+  
   let prev = () => {
     if (currentPage > 1) {
       setCurrentPage((state) => state - 1);
     }
   };
+  //=========================== change hobe eta
+ 
 
+// condition pagination ====================
+
+// let data = useContext(apiData);
+// let [currentPages, setCurrentPages] = useState(1);
+// let [perPages, setPerPages] = useState(number);
+
+// let lastPages = currentPage * perPage;
+// let firstPages = lastPage - perPage;
+// let allDatas = data.slice(firstPage, lastPage);
+// let pageNumbers = [];
+// for (let i = 0;i <Math.ceil(
+      
+//       brandsearchFilter.length > 0
+//       ? brandsearchFilter
+//       : filterprice.length > 0
+//       ? filterprice
+//       : cetagorysearchFilter.length > 0
+//       ? cetagorysearchFilter
+//       : data.length / perPage
+//   );
+//   i++
+// ) {
+//   pageNumber.push(i);
+// }
+
+// let Paginates = (pageNumber) => {
+//   setCurrentPage(pageNumber + 1);
+// };
+
+// let nextarr = () => {
+//   if (currentPage < pageNumber.length) {
+//     setCurrentPage((state) => state + 1);
+//   }
+// };
+
+// let prevarr = () => {
+//   if (currentPage > 1) {
+//     setCurrentPage((state) => state - 1);
+//   }
+// };
+//===========================
+
+  //==========================================
+
+
+
+
+
+
+
+
+//=====filter by category ,brand ,price
   useEffect(() => {
     setCategory([...new Set(data.map((item) => item.category))]);
   }, [data]);
@@ -140,10 +192,7 @@ const Products = () => {
     let brandFilter = data.filter((item) => item.brand == citem);
     setBrandFilter(brandFilter);
   };
-  let [colList, setColList] = useState("");
-  let handlColeList = () => {
-    setColList("Activelist");
-  };
+
   let handleprice = (value) => {
     setLowprice(value.low);
     setHighprice(value.high);
@@ -151,10 +200,9 @@ const Products = () => {
     let priceFilter = data.filter(
       (item) => item.price > value.low && item.price < value.high
     );
-
     setFilterprice(priceFilter);
   };
-
+//===========================
   return (
     <>
       <div className="pb-12 sm:pt-5 lg:pt-32">
@@ -730,7 +778,7 @@ const Products = () => {
                           >
                             Sort by:
                           </label>
-                          <select
+                          {/* <select
                             onChange={(e) => setSelectitem(e.target.value)}
                             name=""
                             id=""
@@ -754,7 +802,50 @@ const Products = () => {
                             >
                               High To Low
                             </option>
-                          </select>
+                          </select> */}
+      {/* <div className="p-5">
+     
+      <select className="border p-2 mb-4" onChange={handleSortChange}>
+        <option value="">Sort by Price</option>
+        <option value="low-to-high">Price: Low to High</option>
+        <option value="high-to-low">Price: High to Low</option>
+      </select>
+
+     
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {products.map((product) => (
+          <div key={product.id} className="border p-3 shadow-md rounded-md">
+            <img src={product.thumbnail} alt={''} className="w-full h-40 object-cover" />
+            <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
+            <p className="text-red-500 font-bold">${product.price}</p>
+          </div>
+           ))}
+      </div>
+    </div> */}
+    {/* <div className="p-5"> */}
+     
+      <select className="border p-2 mb-4" onChange={handleSortChange}>
+        <option value="">Sort by Price</option>
+        <option value="low-to-high"> Low to High</option>
+        <option value="high-to-low"> High to Low</option>
+      </select>
+
+      
+      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {Array.isArray(products) && products.length > 0 ? (
+          products.map((product) => (
+            <div key={product.id} className="border p-3 shadow-md rounded-md">
+              <img src={product.thumbnail} alt={product.title} className="w-full h-40 object-cover" />
+              <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
+              <p className="text-red-500 font-bold">${product.price}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-center col-span-3">No products found!</p>
+        )}
+      </div>
+    </div> */}
+  
                         </Flex>
                       </div>
                       <div className="w-[40%] relative right-4  pl-4">
@@ -817,7 +908,7 @@ const Products = () => {
                     cetagorysearchFilter={cetagorysearchFilter}
                     brandsearchFilter={brandsearchFilter}
                     colList={colList}
-                    filterprice={filterprice}
+                    filterprice={filterprice} products={products}
                   />
                 </div>
               </div>

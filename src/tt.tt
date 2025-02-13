@@ -1,65 +1,240 @@
-import React, { useState } from 'react'
-import Container from '../Container'
-import Heading from '../Heading'
-import Flex from '../Flex'
-import Breadcrumb from '../Breadcrumb'
-import Button from '../Button'
-import { IoIosEye,IoIosEyeOff  } from "react-icons/io";
-import { Link, } from 'react-router-dom'
 
- const Login = () => {
- let [eye,setEye]=useState(false)
-// Email
- let [email,setEmail]=useState('')
- let [emailrr,setEmailrr]=useState('')
- let changeEmail=(e)=>{
-     setEmail(e.target.value)
-     setEmailrr('')
-   }
 
-   let submit=()=>{
-    if(!email){
-      setEmailrr("Email  is Requard")
-    }else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)) {
-      setEmailrr("You have entered an invalid email address!")
-    }
-  }
-  return (
-    <div className='lg:py-[80px] py-6 bg-white overflow-hidden'>
-      <Container>
-          <div className='border-b lg:pb-20 '>
-          <Heading as={'h3'} text={'Login'} className='font-dm font-bold text-[40px] text-navHColor'/>
-          <Breadcrumb/>
-          <Heading as={'p'} text={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the.'} className='font-dm font-regular text-[16px] text-navColor lg:pr-[700px] '/>
-          </div>
-          <div className='border-b lg:pb-20  lg:py-[100px]'>
-          <Heading as={'h3'} text={'Returning Customer'} className='font-dm font-bold text-[32px] lg:text-[40px] text-navHColor'/> 
-          <Flex className={'gap-x-6 border-b pb-3 flex-col lg:flex-row '}>
-                <div className='pt-5 lg:pt-[50px]'>
-                <label for="uname"><b className='pl-3'>Email address</b></label> <br/>
-                <input value={email} onChange={changeEmail} type="email" className='border border-navColor outline-none  p-3 bg-white  w-[300px]' placeholder="Email address" name="uname"required></input>
-                <p className=' absolute text-red-600 bg-slate-700 px-2 font-bold'>{emailrr}</p>
-                </div>
-                <div className='pt-5 lg:pt-[50px]'>
-                <div>
-                   <label for="uname"><b className='pl-3'>Password</b></label> <br/>
-                        <div className='relative w-[300px] '>
-                        <input type={eye?"text":"password"} className='border border-navColor p-3 bg-white outline-none w-full' placeholder="Enter Password"name="uname"required></input>
-                        {eye?(<IoIosEye onClick={()=> setEye(!eye)} className='absolute top-[50%] -translate-y-1/2 lg:right-2 right-1'/>
-                        ):(<IoIosEyeOff onClick={()=> setEye(!eye)} className='absolute top-[50%] -translate-y-1/2 lg:right-2 right-1' />
-                        )}
-                    </div>
-                </div>
-                </div>
-          </Flex>
-          <Button btnText={'Login'} className={'mt-6'}/>
-          </div>
-          <Heading as={'h3'} text={'New Customer'} className='font-dm font-bold text-[40px] lg:pt-[50px]'/>
-          <Heading as={'p'} text={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the.'} className='font-dm font-regular text-[16px] pt-[30px] lg:pr-[700px] text-navColor'/>
-          <Link to='/sinup'><Button onClick={submit} btnText={'Continue'} className={'mt-10'}/></Link>
-      </Container>
-    </div>
-  )
-}
-export default Login
+
+
+// import React, { useEffect, useState } from 'react'
+// import Flex from '../Flex'
+// import Product from '../Product'
+
+
+// const Post = ({allData,cetagorysearchFilter,brandsearchFilter,filterprice,colList,products}) => {
+  
+//         let [seeshort, setSeeshort]=useState([])
+//         let [catshow ,setCatshow]=useState(true)
+//         let [pricehort, setPricehort]=useState([])
+//         let [pricehow ,setPricehow]=useState(true)
+//         let [brandhort, setBrandhort]=useState([])
+//         let [brandhow ,setBrandhow]=useState(true)
+//         let [short, setShort]=useState([])
+//         let [shorthide ,setShorthide]=useState(true)
+//      console.log(products);
+     
+//      useEffect(()=>{
+//       let filterslice=products.slice(0,6)
+//       setShorthide(filterslice)
+//         },[products])
+//         useEffect(()=>{
+//            let filterslice=cetagorysearchFilter.slice(0,6)
+//            setSeeshort(filterslice)
+//         },[cetagorysearchFilter])
+//         useEffect(()=>{
+//           let filterslice=brandsearchFilter.slice(0,6)
+//           setBrandhort(filterslice)
+//        },[brandsearchFilter])
+
+//         useEffect(()=>{
+//           let filterslice=filterprice.slice(0,6)
+//           setPricehort(filterslice)
+//        },[filterprice])
+
+      
+//         let handleshow=()=>{
+//           setSeeshort(cetagorysearchFilter)
+//           setCatshow(false)
+//         }
+//         let handlbrandeshow=()=>{
+//           setBrandhort(brandsearchFilter)
+//           setBrandhow(false)
+//         }
+
+//         let handleprishow=()=>{
+//           setPricehort(filterprice)
+//           setPricehow(false)
+//         }
+
+//         let handlehide=()=>{
+//           let filterslice=cetagorysearchFilter.slice(0,6)
+//           setSeeshort(filterslice)
+//           setCatshow(true)
+//         }
+//         let handlebrandhide=()=>{
+//           let filterslice=brandsearchFilter.slice(0,6)
+//           setBrandhort(filterslice)
+//           setBrandhow(true)
+//         }
+//         let handleprihide=()=>{
+//           let filterslice=filterprice.slice(0,6)
+//           setPricehort(filterslice)
+//           setPricehow(true)
+//         }
+//         let handllisthide=()=>{
+//           let filterslice=products.slice(0,6)
+//           setShort(filterslice)
+//           setShorthide(true)
+//         }
+//         let handllistshow=()=>{
+//           setShort(products)
+//           setShorthide(false)
+//         }
+//         // 'gap-x-10 flex-wrap'
+//   return (
+//     <>
+//     <div> 
+     
+//       <Flex className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10  flex-wrap'}`}>
+
+
+
+
+//       {(Array.isArray(products) && products.length > 0 ? 
+//         <div>
+//         <div className={ `${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
+//            {short.map((items) => (
+//            <div className='w-full lg:w-[270px] pt-16'>
+//                <div className='w-full lg:w-[270px] bg-white relative group'>
+//                 <Product 
+//                  id={items.id}
+//                  imgSrc={items.thumbnail}
+//                  badge={items.discountPercentage}
+//                  heart={'Add to Wish List'}
+//                  Compare={'Compare'}
+//                  Cart={'Add to Cart'}
+//                  title={items.title}
+//                  prise={items.price}
+//                  color={items.brand}
+//                 />
+//               </div>
+//              </div>
+//              ))}
+//              </div>
+//              <div className='mt-6'>
+//              {shorthide ?products.length>6 &&
+//              <button onClick={handllistshow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+//              :
+//              <button onClick={handllisthide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+//              }
+//              </div>
+//              </div>
+      
+//       :  
+//       brandsearchFilter.length >0 ?
+//       <div>
+//       <div className={ `${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
+//          {brandhort.map((items) => (
+//          <div className='w-full lg:w-[270px] pt-16'>
+//              <div className='w-full lg:w-[270px] bg-white relative group'>
+//               <Product 
+//                id={items.id}
+//                imgSrc={items.thumbnail}
+//                badge={items.discountPercentage}
+//                heart={'Add to Wish List'}
+//                Compare={'Compare'}
+//                Cart={'Add to Cart'}
+//                title={items.title}
+//                prise={items.price}
+//                color={items.brand}
+//               />
+//             </div>
+//            </div>
+//            ))}
+//            </div>
+//            <div className='mt-6'>
+//            {brandhow ?brandsearchFilter.length>6 &&
+//            <button onClick={handlbrandeshow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+//            :
+//            <button onClick={handlebrandhide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+//            }
+//            </div>
+//            </div>
+//           :
+//           filterprice.length>0 ?
+//           <div>
+//           <div className={`${colList== 'Activelist'?'gap-x-10  flex-col':'gap-x-10 flex flex-wrap'}`}>
+//              {pricehort.map((items) => (
+//              <div className='pt-16 w-full lg:w-[270px]'>
+//                  <div className='w-full lg:w-[270px] bg-white relative group'>
+//                   <Product 
+//                    id={items.id}
+//                    imgSrc={items.thumbnail}
+//                    badge={items.discountPercentage}
+//                    heart={'Add to Wish List'}
+//                    Compare={'Compare'}
+//                    Cart={'Add to Cart'}
+//                    title={items.title}
+//                    prise={items.price}
+//                    color={items.brand}
+//                   />
+//                 </div>
+//                </div>
+//                ))}
+//                </div>
+//                <div className='mt-6'>
+//                {pricehow ?filterprice.length>6 &&
+//                <button onClick={handleprishow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+//                :
+//                <button onClick={handleprihide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+//                }
+//                </div>
+//                </div>
+//          :
+        
+//          cetagorysearchFilter.length >0 ?
+//         <div>
+//        <div className={`${colList== 'Activelist'?'gap-x-10 flex-col':'gap-x-10 flex flex-wrap'}`}>
+//           {seeshort.map((items) => (
+//           <div className='lg:pt-16 w-full lg:w-[270px]'>
+//               <div className='w-full lg:w-[270px] bg-white relative group'>
+//                <Product 
+//                 id={items.id}
+//                 imgSrc={items.thumbnail}
+//                 badge={items.discountPercentage}
+//                 heart={'Add to Wish List'}
+//                 Compare={'Compare'}
+//                 Cart={'Add to Cart'}
+//                 title={items.title}
+//                 prise={items.price}
+//                 color={items.brand}
+//                />
+//              </div>
+//             </div>
+//             ))}
+//             </div>
+//             <div className='mt-6'>
+//             {catshow ?cetagorysearchFilter.length>6 &&
+//             <button onClick={handleshow} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See All</button>
+//             :
+//             <button onClick={handlehide} className=' font-bold py-2 px-6 bg-gray-500 font-dm text-red-700'>See Less</button>
+//             }
+//             </div>
+//             </div>
+            
+//         :
+        
+//         allData.map((items) => (
+//           <div className='pt-4 lg:pt-16 w-full lg:w-[270px]'>
+//             <div className='lg:ml-0 w-full lg:w-[270px] bg-white relative group'>
+//             <Product 
+//               id={items.id}
+//               imgSrc={items.thumbnail}
+//               badge={items.discountPercentage}
+//               heart={'Add to Wish List'}
+//               Compare={'Compare'}
+//               Cart={'Add to Cart'}
+//               title={items.title}
+//               prise={items.price}
+//               color={items.brand}
+//               />
+//             </div>
+           
+//           </div>   
+          
+//         )))}
+//     </Flex>
+//     </div>
+    
+//     </>
+//   )
+// }
+
+// export default Post
 

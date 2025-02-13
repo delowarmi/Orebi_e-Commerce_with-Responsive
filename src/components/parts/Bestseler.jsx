@@ -6,13 +6,7 @@ import Product from '../Product'
 import bag from '/src/assets/bag.png'
 import bati from '/src/assets/bati.png'
 
-
 const Bestseler = () => {
-
- 
-
-
-
   return (
     <div className='py-[60px] overflow-hidden'>
       <Container>

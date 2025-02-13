@@ -11,8 +11,7 @@ let apiData =  createContext()
             setAll(response.data.products);
             //  console.log(data);
             })
-  
-                         
+             
 
           }
             all()  
