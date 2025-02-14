@@ -40,7 +40,7 @@ const Contact = () => {
         <form onSubmit={handleSubmit} className="pt-5 lg:pt-[60px]">
           <div>
             <label htmlFor="name">
-              <b className="pl-3">Name</b>
+              <b className="pl-1 text-navHColor font-dm">Name</b>
             </label>
             <br />
             <input
@@ -56,7 +56,7 @@ const Contact = () => {
 
           <div className="pt-[30px]">
             <label htmlFor="email">
-              <b className="pl-3">Email</b>
+              <b className="pl-1 text-navHColor font-dm">Email</b>
             </label>
             <br />
             <input
@@ -72,7 +72,7 @@ const Contact = () => {
 
           <div className="pt-[30px]">
             <label htmlFor="message">
-              <b className="pl-3">Message</b>
+              <b className="pl-1 text-navHColor font-dm">Message</b>
             </label>
             <br />
             <textarea
@@ -86,8 +86,8 @@ const Contact = () => {
           </div>
 
           <div className="pt-[30px] group">
-            <button type="submit" className=" hover:bg-slate-700 hover:text-yellow-600 rounded-lg border border-navColor py-[10px] px-[60px] mt-[40px] bg-black text-white">
-              Post
+            <button type="submit" className=" hover:bg-slate-700 hover:text-yellow-600 rounded-lg border border-navColor py-[10px] px-[60px] mt-[40px] bg-orange-600 text-white">
+              SEND
             </button>
           </div>
         </form>
