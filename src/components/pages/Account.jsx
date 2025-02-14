@@ -69,6 +69,9 @@ const Account = () => {
                   <p className="border-b py-3 font-dm font-regular text-[16px] text-navColor">
                     <strong className="pr-[30px] font-bold text-navHColor text-[20px]">Phone:</strong> {account[0]?.phone}
                   </p>
+                  <p className="border-b py-3 font-dm font-regular text-[16px] text-navColor">
+                    <strong className="pr-[3px] font-bold text-navHColor text-[20px]">Create Date:</strong> {account[0]?.createdAt}
+                  </p>
                 </div>
               )}
               <div className="pt-6 pb-20 w-[100%] group">

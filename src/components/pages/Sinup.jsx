@@ -6,24 +6,19 @@ import Button from "../Button";
 import axios from "axios";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Breadcrumb from "../Breadcrumb";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  updateProfile,
-} from "firebase/auth";
+import {getAuth,createUserWithEmailAndPassword,sendEmailVerification,
+updateProfile,} from "firebase/auth";
 import { BallTriangle } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getDatabase, ref, set} from "firebase/database";
-import {auth,db} from '../../firebaseConfig'
-
+// import {auth,db} from '../../firebaseConfig'
 const Signup = () => {
   const auth = getAuth();
   const db = getDatabase();
   const navigate = useNavigate();
-
+  const bdTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" }); //bd time setup
   // State variables
   const [eye, setEye] = useState(false);
   const [eyes, setEyes] = useState(false);
@@ -192,11 +187,13 @@ const Signup = () => {
           region: formData.region,
           postCode: formData.postCode,
         },
-        createdAt: new Date().toISOString(),
+        // createdAt: new Date().toISOString(),
+          createdAt: bdTime, // ✅ বাংলাদেশ সময়
+        
       });
 
       toast.success("Registration successful! Please verify your email.");
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
       console.error("Registration error:", error);
       setLoader(true);
@@ -210,7 +207,7 @@ const Signup = () => {
 
   return (
     <div className="py-[80px] bg-white overflow-hidden">
-      <ToastContainer position="top-right" autoClose={5000} />
+      {/* <ToastContainer position="top-right" autoClose={5000} /> */}
       <Container>
         {/* Breadcrumb and header section */}
         <div className="border-b pb-20">
