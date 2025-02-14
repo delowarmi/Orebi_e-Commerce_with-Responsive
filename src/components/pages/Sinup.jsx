@@ -16,7 +16,8 @@ import { BallTriangle } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set} from "firebase/database";
+import {auth,db} from '../../firebaseConfig'
 
 const Signup = () => {
   const auth = getAuth();

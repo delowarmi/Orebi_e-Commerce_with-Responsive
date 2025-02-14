@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import RootLayout from "./components/layout/RootLayout";
 import About from "./components/pages/About";
@@ -12,9 +12,18 @@ import Login from "./components/pages/Login";
 import ProductDetails from "./components/pages/ProductDetails";
 import Products from "./components/pages/Products";
 import Sinup from "./components/pages/Sinup";
+import { useEffect, useState } from "react";
+import { auth } from "./firebaseConfig";
+// import auth from '../../firebaseConfig'
 // import ProDetails from "./components/proDetails";
 
 function App() {
+  let [user,setUser]=useState();
+  useEffect(()=>{
+    auth.onAuthStateChanged((user)=>{
+      setUser(user);
+    });
+  });
   return (
     <>
       <Routes>
@@ -25,7 +34,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Sinup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/my_account" element={<Account />} />
+          <Route path="/my_account" element={<Account/>} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckOut />} />
@@ -38,3 +47,5 @@ function App() {
 }
 
 export default App;
+
+//  user? <Account />:

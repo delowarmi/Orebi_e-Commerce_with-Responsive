@@ -4,6 +4,8 @@ import Heading from "../Heading";
 import Breadcrumb from "../Breadcrumb";
 import Flex from "../Flex";
 import { getDatabase, ref, onValue } from "firebase/database";
+import {auth,db} from '../../firebaseConfig'//addme
+import { Link } from "react-router-dom";
 const Account = () => {
   let [account, setAccount] = useState([]);
   const db = getDatabase();
@@ -18,6 +20,19 @@ const Account = () => {
       setAccount(newArray);
     });
   }, []);
+
+  async function handlelogout () {
+    try{
+      await auth.signOut();
+      window.location.href='/'
+      console.log('logout sucessfully ')
+
+    }catch(error){
+      console.error( 'error loggout:', error.massage);
+      
+    }
+    
+  }
 
   return (
     <div>
@@ -49,16 +64,18 @@ const Account = () => {
                     <strong className="pr-[39px] font-bold text-navHColor text-[20px]">Email:</strong> {account[0]?.email}
                   </p>
                   <p className="border-b py-3 font-dm font-regular text-[16px] text-navColor">
-                    <strong className="pr-[10px] font-bold text-navHColor text-[20px]">Address:</strong>{account[0]?.address?.country}, {account[0]?.address?.line1}, {account[0]?.address?.city}
+                    <strong className="pr-[10px] font-bold text-navHColor text-[20px]">Address:</strong>{account[0]?.address?.line1}, {account[0]?.address?.city},{account[0]?.address?.country}
                   </p>
                   <p className="border-b py-3 font-dm font-regular text-[16px] text-navColor">
                     <strong className="pr-[30px] font-bold text-navHColor text-[20px]">Phone:</strong> {account[0]?.phone}
                   </p>
                 </div>
               )}
-              <li  className="font-dm font-regular text-[16px] text-navColor py-5 lg:pb-[130px] ">
+              <div className="pt-6 pb-20 w-[100%] group">
+              <Link><li onClick={handlelogout} className="font-dm font-regular text-navHColor text-[20px] py-2 bg-orange-600 hover:bg-slate-600 text-center rounded-lg hover:text-white">
                 Logout
-              </li>
+              </li></Link>
+              </div>
             </ul>
           </div>
           <div className="w-full lg:w-[918px] lg:mt-8">
