@@ -13,3 +13,85 @@
         <div>
           <div className='bg-bannerImg bg-no-repeat bg-cover bg-center py-[70px] md:py-[150px] xl:py-[270px] ' ></div>
 </div>
+
+
+
+// condition pagination =========যখন low to high & high to low condtion দি তখন আমার আগের paginate hoy na =======
+
+  // let data = useContext(apiData);
+  // let [currentPages, setCurrentPages] = useState(1);
+  // let [perPages, setPerPages] = useState(number);
+
+  // let lastPages = currentPage * perPage;
+  // let firstPages = lastPage - perPage;
+  // let allDatas = data.slice(firstPage, lastPage);
+  // let pageNumbers = [];
+  // for (let i = 0;i <Math.ceil(
+
+  //       brandsearchFilter.length > 0
+  //       ? brandsearchFilter
+  //       : filterprice.length > 0
+  //       ? filterprice
+  //       : cetagorysearchFilter.length > 0
+  //       ? cetagorysearchFilter
+  //       : data.length / perPage
+  //   );
+  //   i++
+  // ) {
+  //   pageNumber.push(i);
+  // }
+
+  // let Paginates = (pageNumber) => {
+  //   setCurrentPage(pageNumber + 1);
+  // };
+
+  // let nextarr = () => {
+  //   if (currentPage < pageNumber.length) {
+  //     setCurrentPage((state) => state + 1);
+  //   }
+  // };
+
+  // let prevarr = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage((state) => state - 1);
+  //   }
+  // };
+  //===========================
+
+  //==========================================
+
+  
+  //short high to low========================================
+  // let [products, setProducts] = useState([]);
+  // let [sortOrder, setSortOrder] = useState("");
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://dummyjson.com/products?limit=194")
+  //     .then((response) => {
+  //       console.log("Fetched Products:", response.data.products);
+  //       if (Array.isArray(response.data.products)) {
+  //         setProducts(response.data.products);
+  //       } else {
+  //         setProducts([]);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //       setProducts([]);
+  //     });
+  // }, []);
+
+  // let handleSortChange = (event) => {
+  //   let order = event.target.value;
+  //   setSortOrder(order);
+  //   let sortedProducts = [...products];
+  //   if (order === "low-to-high") {
+  //     sortedProducts.sort((a, b) => a.price - b.price);
+  //   } else if (order === "high-to-low") {
+  //     sortedProducts.sort((a, b) => b.price - a.price);
+  //   }
+  //   setProducts(sortedProducts);
+  // };
+
+  //low to high==========================================
