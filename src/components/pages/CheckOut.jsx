@@ -293,14 +293,14 @@ const CheckOut = () => {
           <div className="mt-10 border p-5">
             <h3 className="text-[20px] font-bold mb-4">Select Payment Method:</h3>
             <button
-              className="w-full py-3 mb-3 bg-pink-500 text-white font-bold rounded disabled:bg-gray-400"
+              className="w-full py-3 shadow-md hover:bg-gray-100 hover:border-orange-600  mb-3 bg-pink-500 text-white font-bold rounded-lg disabled:bg-gray-400 transition-all duration-300 border hover:text-orange-700 "
               onClick={() => handlePayment("bkash")}
               disabled={!user || !isVerified}
             >
               Pay with bKash
             </button>
             <button
-              className="w-full py-3 bg-red-500 text-white font-bold rounded disabled:bg-gray-400"
+              className="w-full py-3 shadow-md hover:bg-gray-100 hover:border-orange-600  bg-red-500 text-white font-bold rounded-lg disabled:bg-gray-400 transition-all duration-300 border hover:text-orange-700 "
               onClick={() => handlePayment("nagad")}
               disabled={!user || !isVerified}
             >

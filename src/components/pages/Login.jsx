@@ -88,9 +88,9 @@ const Login = () => {
               <div className="relative w-[300px]">
                 <input value={password} onChange={changePassword} type={eye ? "text" : "password"} className="outline-none border p-3 w-full" placeholder="Enter Password" />
                 {eye ? (
-                  <IoIosEye onClick={() => setEye(!eye)} className="absolute top-[50%] right-2 cursor-pointer" />
+                  <IoIosEye onClick={() => setEye(!eye)} className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer" />
                 ) : (
-                  <IoIosEyeOff onClick={() => setEye(!eye)} className="absolute top-[50%] right-2 cursor-pointer" />
+                  <IoIosEyeOff onClick={() => setEye(!eye)} className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer" />
                 )}
               </div>
             </div>

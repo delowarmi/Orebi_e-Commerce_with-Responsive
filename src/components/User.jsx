@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaCaretDown } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import Flex from "../components/Flex";
@@ -30,7 +30,7 @@ const User = () => {
         }}
       >
         <Flex className={"items-center"}>
-          <FaCaretDown
+          <FaUser
             className="cursor-pointer"
             onClick={() => setHidden(!hidden)}
           />
@@ -42,7 +42,7 @@ const User = () => {
                     <Heading
                       as={"p"}
                       text={"Login"}
-                      className="border border-BorderInfoColor font-dm font-regular text-navHColor text-[14px] py-2 lg:py-4 group hover:bg-navHColor hover:text-white hover:font-bold w-full"
+                      className="font-dm text-[16px] flex items-center  px-[40%] bg-navHColor border hover:border-orange-600 shadow-md  py-2 rounded-lg text-white hover:text-gray-700 hover:bg-gray-100 transition-all duration-300"
                     />
                   </button>
                 </li>

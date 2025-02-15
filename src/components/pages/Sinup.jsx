@@ -17,18 +17,18 @@ import GoogleAuthButton from "../SignWithgoogle";
 
 // import {auth,db} from '../../firebaseConfig'
 const Signup = () => {
-  const auth = getAuth();
-  const db = getDatabase();
-  const navigate = useNavigate();
-  const bdTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" }); //bd time setup
+  let auth = getAuth();
+  let db = getDatabase();
+  let navigate = useNavigate();
+  let bdTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" }); //bd time setup
   // State variables
-  const [eye, setEye] = useState(false);
-  const [eyes, setEyes] = useState(false);
-  const [loader, setLoader] = useState(true);
-  const [countries, setCountries] = useState([]);
+  let [eye, setEye] = useState(false);
+  let [eyes, setEyes] = useState(false);
+  let [loader, setLoader] = useState(true);
+  let [countries, setCountries] = useState([]);
 
   // Form states
-  const [formData, setFormData] = useState({
+  let [formData,setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -44,7 +44,7 @@ const Signup = () => {
   });
 
   // Error states
-  const [errors, setErrors] = useState({
+  let [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -60,7 +60,7 @@ const Signup = () => {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
+        let response = await axios.get("https://restcountries.com/v3.1/all");
         setCountries(response.data);
       } catch (error) {
         console.error("Error fetching countries:", error);
@@ -71,7 +71,7 @@ const Signup = () => {
 
   // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -84,9 +84,9 @@ const Signup = () => {
   };
 
   // Validate form
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = { ...errors };
+  let validateForm = () => {
+  let isValid = true;
+  let newErrors = { ...errors };
 
     // First Name
     if (!formData.firstName.trim()) {
