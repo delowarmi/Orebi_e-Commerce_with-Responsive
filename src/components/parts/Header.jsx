@@ -74,7 +74,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-headerbgColor py-3 pl-1 top-12 lg:top-16 sticky z-20">
+    <div className="bg-headerbgColor py-3 pl-1 top-12 lg:top-[62px] sticky z-20">
       <Container>
         <Flex className="justify-between">
           {/* Category Section */}
@@ -144,3 +144,4 @@ const Header = () => {
 };
 
 export default Header;
+

@@ -54,7 +54,7 @@ const Account = () => {
                 Dashboard
               </li>
               {account.length > 0 && (
-                <div>
+                <div className="h-[280px]">
                   <Flex>
                     <p className="border-b w-full py-3 font-dm font-regular text-[16px] text-navColor">
                       <strong className="pr-[40px] font-bold text-navHColor text-[20px]">Name:</strong> {account[0]?.firstName} {account[0]?.lastName}

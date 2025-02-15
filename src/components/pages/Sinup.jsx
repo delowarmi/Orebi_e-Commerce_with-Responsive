@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getDatabase, ref, set} from "firebase/database";
+import GoogleAuthButton from "../SignWithgoogle";
+
 // import {auth,db} from '../../firebaseConfig'
 const Signup = () => {
   const auth = getAuth();
@@ -505,12 +507,12 @@ const Signup = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="pt-6">
+          <div className="mt-6 flex gap-x-12 items-center">
             {loader ? (
               <Button
                 type="submit"
                 btnText="Sign Up"
-                className="mt-6 bg-primary text-white px-8 py-3 rounded hover:bg-primaryDark"
+                className="mt-6 bg-primary text-white px-8 rounded hover:bg-primaryDark"
               />
             ) : (
               <BallTriangle
@@ -521,6 +523,9 @@ const Signup = () => {
                 ariaLabel="loading"
               />
             )}
+            <div className="mt-6">
+              {/* <GoogleAuthButton/> */}
+            </div>
           </div>
         </form>
       </Container>

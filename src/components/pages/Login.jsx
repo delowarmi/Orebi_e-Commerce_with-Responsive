@@ -11,6 +11,8 @@ import { BallTriangle } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import GoogleAuthButton from "../SignWithgoogle";
+
 
 const Login = () => {
   let auth = getAuth();
@@ -95,11 +97,18 @@ const Login = () => {
           </Flex>
           {errorMsg && <p className="text-red-600 font-bold mt-2">{errorMsg}</p>}
         </div>
+        <div className="flex gap-x-10">
+        <div>
         {loader ? (
           <BallTriangle height={100} width={100} color="#4fa94d" />
         ) : (
           <Button onClick={submit} btnText="Login" className="mt-6" />
         )}
+        </div>
+        <div className="mt-6">
+        <GoogleAuthButton/>
+        </div>
+        </div>
         <Heading as="h3" text="New Customer" className="pt-[100px] text-[39px] font-dm font-bold text-navHColor" />
         <Heading as="p" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." className="py-[40px] text-[14px] font-dm font-regular text-navColor pr-[760px]" />
         <Link to="/signup"><Button btnText="Continue" /></Link>
