@@ -14,6 +14,7 @@ import Products from "./components/pages/Products";
 import Sinup from "./components/pages/Sinup";
 import { useEffect, useState } from "react";
 import { auth } from "./firebaseConfig";
+import Order from "./components/Order";
 // import auth from '../../firebaseConfig'
 // import ProDetails from "./components/proDetails";
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/ordersuccess" element={<Order/>} />
           <Route path="*" element={<Error />} />
           {/* <Route path="/prodil" element={<ProDetails/>} /> */}
         </Route>

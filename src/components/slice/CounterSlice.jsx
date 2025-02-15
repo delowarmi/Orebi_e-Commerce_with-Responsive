@@ -21,6 +21,10 @@ export const CounterSlice = createSlice({
         localStorage.setItem("cart", JSON.stringify(state.cartItem));
       }
     },
+    clearCart: (state) => {
+      state.cartItem = [];
+      localStorage.removeItem("cartItem");
+    },
 
     quantityInrement: (state, action) => {
       state.cartItem[action.payload].quantity += 1;
@@ -35,6 +39,7 @@ export const CounterSlice = createSlice({
     removeProduct: (state, action) => {
       state.cartItem.splice(action.payload, 1);
       localStorage.setItem("cart", JSON.stringify(state.cartItem));
+        
     },
     addToCart: (state, action) => {
       const existingProduct = state.cartItem.find(
@@ -56,7 +61,7 @@ export const {
   quantityInrement,
   quantityDecriment,
   removeProduct,
-  addToCart,
+  addToCart,clearCart
 } = CounterSlice.actions;
 
 export default CounterSlice.reducer;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Container from "../Container";
 import Heading from "../Heading";
 import Breadcrumb from "../Breadcrumb";
-import { db } from "../../firebaseConfig"; // Firebase import
+import { storage } from "../../firebaseConfig"; // Firebase import
 import { collection, addDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -24,7 +24,7 @@ const Contact = () => {
     toast.info("Sending message...");
     
     try {
-      await addDoc(collection(db, "contacts"), formData);
+      await addDoc(collection(storage, "contacts"), formData);
       toast.success("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
