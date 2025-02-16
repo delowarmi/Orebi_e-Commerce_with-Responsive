@@ -69,17 +69,17 @@ const CheckOut = () => {
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div className="p-4 border rounded-lg shadow-lg bg-gray-100 ">
           <div className="flex gap-x-8">
-          <div className="">
-          <h4 className="text-lg font-semibold">Product Image</h4>
+          <div className="w-[70%] ">
+          <h4 className="text-lg font-semibold">Product Image</h4><div className="pt-2 flex flex-wrap">
           {cartItems.length > 0 ? (
             cartItems.map((item, index) => (
             // <p key={index} className="text-[12px] text-gray-900">{item.thumbnail}</p>
-            <img src={item.thumbnail} alt="image not found"className="w-[40px] h-[40px]"/>
+            <img src={item.thumbnail} alt="image not found"className="w-[70px] h-[70px]"/>
             ))
           ) : (
             <p className="text-[12px] text-gray-500">no product found</p>
           )}
-          </div>
+          </div></div>
           <div>
           <h4 className="text-lg font-semibold">Product Titles</h4>
           {cartItems.length > 0 ? (
@@ -88,7 +88,8 @@ const CheckOut = () => {
             ))
           ) : (
             <p className="text-[12px] text-gray-500">no product found</p>
-          )}</div>
+          )}
+          </div>
           </div>
         </div>
         <div>
