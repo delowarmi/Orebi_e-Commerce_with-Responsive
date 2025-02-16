@@ -69,11 +69,12 @@ const CheckOut = () => {
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div className="p-4 border rounded-lg shadow-lg bg-gray-100 ">
           <div className="flex gap-x-8">
-          <div className="w-[70%]">
+          <div className="">
           <h4 className="text-lg font-semibold">Product Image</h4>
           {cartItems.length > 0 ? (
             cartItems.map((item, index) => (
-            <p key={index} className="text-[12px] text-gray-900">{item.thumbnail}</p>
+            // <p key={index} className="text-[12px] text-gray-900">{item.thumbnail}</p>
+            <img src={item.thumbnail} alt="image not found"className="w-[40px] h-[40px]"/>
             ))
           ) : (
             <p className="text-[12px] text-gray-500">no product found</p>
